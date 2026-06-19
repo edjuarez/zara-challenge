@@ -1,0 +1,33 @@
+.homePage {
+  width: 100%;
+  padding: 0 0 4rem 0;
+  box-sizing: border-box;
+}
+
+.catalogSection {
+width: 100%;
+  box-sizing: border-box;
+  padding: 0 24px; 
+  margin: 0 auto;
+}
+
+.productsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 1px; 
+    background-color: #e5e5e5; 
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+@media (max-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
