@@ -4,7 +4,7 @@ export interface CartItem {
   cartItemId: string;
   id: string;
   brand: string;
-  model: string;
+  name: string;
   price: number;
   imageUrl: string;
   selectedColor: string;

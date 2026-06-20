@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getProducts, Product } from "../../services/api";
 import {ProductCard} from "../../components/ProductCard/ProductCard";
 import styles from "./HomePage.module.scss";
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
-
+  const effectRan = useRef(false);
   useEffect(() => {
+      if (effectRan.current) return;
       getProducts()
         .then((data) => {
           console.log("DATOS DE LA API RECIBIDOS:", data);
@@ -15,12 +16,14 @@ export default function HomePage() {
         .catch((error) => {
           console.error("ERROR AL LLAMAR LA API:", error);
         });
-    }, []); 
+      return () => {
+        effectRan.current = true;
+      };  
+  }, []); 
 
   return (
   <div className={styles.homePageContainer}>
     <section className={styles.homePage}>
-      <h1>Zara Challenge</h1>
       <div className={styles.productsGrid}>
         {products.map((product) => (
         <ProductCard key={product.id} product={product} />

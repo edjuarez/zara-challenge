@@ -1,5 +1,6 @@
 import styles from "./ProductCard.module.scss";
 import { useNavigate } from "react-router-dom";
+
 export const ProductCard = ({ product }: { product: any }) => {
     const navigate = useNavigate();
     return(

@@ -72,17 +72,16 @@ $add-btn-bg: #eeeeee;
 
     .productName {
       font-weight: 300;
-      font-size: 2.2rem;
+      font-size: 24px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin: 0 0 0.5rem 0;
+      letter-spacing: 0;
+      color: $primary-text;
     }
 
     .basePrice {
       font-size: 1.2rem;
-      font-weight: 400;
+      font-weight: 300;
       color: $primary-text;
-      margin-bottom: 3rem;
     }
 
     .selectorSection {
@@ -102,6 +101,7 @@ $add-btn-bg: #eeeeee;
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      color: $primary-text;
 
       .storageOption {
         flex: 1;
@@ -168,7 +168,7 @@ $add-btn-bg: #eeeeee;
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: darken($add-btn-bg, 3%);
+        background-color: $grey-swatch;
       }
     }
   }

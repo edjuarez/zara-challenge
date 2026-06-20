@@ -1,24 +1,26 @@
+import { ColorOption, StorageOption } from "../pages/DetailsPage/DetailsPage";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export interface Product {
   id: string;
   brand: string;
   name: string;
-  price: number;
-  imgUrl: string;
+  basePrice: number;
+  imageUrl: string;
+  colorOptions: ColorOption[];
+  storageOptions: StorageOption[];
 }
 
 export interface ProductDetail extends Product {
-  cpu: string;
-  ram: string;
+  screen: string;
+  resolution: string;
+  processor: string;
+  mainCamera: string;
+  selfieCamera: string;
   os: string;
-  displayResolution: string;
-  battery: string;
-  cameras: string;
-  internalMemory: string[];
-  colors: string[];
+  screenRefreshRate: string;
 }
-
-const BASE_URL = "https://prueba-tecnica-api-tienda-moviles.onrender.com";
-const API_KEY = "87909682e6cd74208f41a6ef39fe4191";
 
 const fetchFromApi = async (endpoint: string, options: RequestInit = {}) => {
   const headers = {
