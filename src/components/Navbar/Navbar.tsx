@@ -12,8 +12,12 @@ export const Navbar = () => {
             onClick={() => navigate(`/`)}>
                 <img src="/logo.svg" alt="Logo" />
             </div>
+            <button className={styles.emptyCartBtn}
+            onClick={() => cart.clearCart()}>
+                Empty Cart
+            </button>
             <div className={styles.navbarCartIcon}
-             onClick={() => navigate(`/cart`)}>
+            onClick={() => navigate(`/cart`)}>
                 <img src="/cart-icon.svg" alt="Cart Icon" />
                 <span className={styles.cartCount}> {cart.cartCount}</span>
             </div>

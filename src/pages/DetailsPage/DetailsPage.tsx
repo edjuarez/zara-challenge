@@ -56,7 +56,8 @@ export default function DetailPage() {
             price: currentPrice,
             imageUrl: colorSeleccionado.imageUrl,
             selectedColor: colorSeleccionado.name,
-            selectedStorage: almacenamientoSeleccionado.capacity
+            selectedStorage: almacenamientoSeleccionado.capacity,
+            hexCode: colorSeleccionado.hexCode
         });
 
         // alert(`¡Añadido al carrito: ${product.name} (${almacenamientoSeleccionado.capacity} / ${colorSeleccionado.name})!`);
@@ -92,7 +93,7 @@ export default function DetailPage() {
                         className={`${styles.storageOption} ${index === selectedStorageIndex ? styles.selected : ''}`}
                         onClick={() => setSelectedStorageIndex(index)}
                     >
-                        {option.price}
+                        {option.capacity}
                     </button>
                     ))}
                 </div>

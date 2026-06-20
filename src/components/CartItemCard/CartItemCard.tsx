@@ -3,7 +3,9 @@ export const CartItemCard = ({ product }: { product: any }) => {
     console.log(product, "imagen del producto")
     return(
         <div className={styles.cartItemCard}>
-            <img src={product.imageUrl} alt="Cart Icon" />
+            <div className={styles.imageWrapper}>
+                <img src={product.imageUrl} alt="Cart Icon" />
+            </div>
             <div>
                 <p>{product.name}</p>
                 <p>{product.selectedStorage} | {product.selectedColor}</p>

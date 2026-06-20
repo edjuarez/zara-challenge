@@ -15,7 +15,9 @@ export default function CartPage(){
                 
                 <div className={styles.cartItemsList}>
                     {cart.map(item => (
-                        <CartItemCard product={item} />
+                        <CartItemCard 
+                        key={item.cartItemId}
+                        product={item} />
                     ))}
                 </div>
                 <footer className={styles.cartFooter}>

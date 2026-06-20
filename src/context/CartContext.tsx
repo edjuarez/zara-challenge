@@ -8,6 +8,7 @@ export interface CartItem {
   price: number;
   imageUrl: string;
   selectedColor: string;
+  hexCode: string;
   selectedStorage: string;
   quantity: number;
 }
@@ -33,7 +34,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart]);
 
   const addToCart = (newItem: Omit<CartItem, "cartItemId" | "quantity">) => {
-    const cartItemId = `${newItem.id}-${newItem.selectedColor}-${newItem.selectedStorage}`;
+    const cartItemId = `${newItem.id}-${newItem.hexCode}-${newItem.selectedStorage.replace(/\s/g, "")}`;
 
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex((item) => item.cartItemId === cartItemId);
@@ -41,6 +42,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existingItemIndex > -1) {
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += 1;
+        console.log("agrego nuevo o actualizo")
         return updatedCart;
       }
 
