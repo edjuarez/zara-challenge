@@ -1,6 +1,8 @@
+import { useCart } from "../../context/CartContext";
 import styles from "./CartItemCard.module.scss";
+
 export const CartItemCard = ({ product }: { product: any }) => {
-    console.log(product, "imagen del producto")
+    const { removeFromCart } = useCart();
     return(
         <div className={styles.cartItemCard}>
             <div className={styles.imageWrapper}>
@@ -10,7 +12,11 @@ export const CartItemCard = ({ product }: { product: any }) => {
                 <p>{product.name}</p>
                 <p>{product.selectedStorage} | {product.selectedColor}</p>
                 <p>Quantity: {product.quantity}</p>
-                <button className={styles.removeBtn}>Remove</button>
+                <button 
+                className={styles.removeBtn}
+                onClick={() => removeFromCart(product.cartItemId)}>
+                    Remove
+                </button>
             </div>
         </div>
     )

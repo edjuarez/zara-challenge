@@ -10,6 +10,7 @@ export interface Product {
   imageUrl: string;
   colorOptions: ColorOption[];
   storageOptions: StorageOption[];
+  uniqueKey?: string;
 }
 
 export interface ProductDetail extends Product {
@@ -38,8 +39,11 @@ const fetchFromApi = async (endpoint: string, options: RequestInit = {}) => {
   return response.json();
 };
 
-export const getProducts = async (): Promise<Product[]> => {
-  return fetchFromApi("/products");
+export const getProducts = async (searchTerm?: string): Promise<Product[]> => {
+  const endpoint = searchTerm 
+    ? `/products?search=${encodeURIComponent(searchTerm)}` 
+    : "/products";
+  return fetchFromApi(endpoint);
 };
 
 export const getProductById = async (id: string): Promise<ProductDetail> => {
