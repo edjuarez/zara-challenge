@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, ProductDetail } from "../../services/api";
 import { useCart } from "../../context/CartContext";
+import { ProductSpecifications } from "../../components/ProductSpecifications/ProductSpecifications";
+import { SimilarItems } from "../../components/SimilarItems/SimilarItems";
 import styles from "./DetailsPage.module.scss";
 
-export interface ColorOption {
+export interface ColorOption { 
   colorCode: string;
   hexCode: string;
   name: string;
@@ -22,49 +24,57 @@ export default function DetailPage() {
     const navigate = useNavigate();
     const [product, setProduct] = useState<ProductDetail | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedStorageIndex, setSelectedStorageIndex] = useState<number>(0);
-    const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
+    const [selectedStorageIndex, setSelectedStorageIndex] = useState<number | null>(null);
+    const [selectedColorIndex, setSelectedColorIndex] = useState<number | null>(null);
     const { addToCart } = useCart();
 
     useEffect(() => {
         if (id) {
             getProductById(id)
             .then((data) => {
-                setProduct(data)
-                console.log(data)
-                const defaultIndex = data.storageOptions.findIndex(
-                    (option) => option.price === data.basePrice
-                );
-
-            setSelectedStorageIndex(defaultIndex !== -1 ? defaultIndex : 0);
+                setProduct(data);
             })
             .catch((error) => console.error("Error cargando producto:", error))
             .finally(() => setIsLoading(false));
         }
     }, [id]);
+
     if (isLoading) return <div style={{ padding: "4rem", textAlign: "center", fontSize: "0.8rem", textTransform: "uppercase" }}>Cargando especificaciones...</div>;
     if (!product) return <div style={{ padding: "4rem", textAlign: "center" }}>Producto no encontrado.</div>;
 
+    const currentImageUrl = selectedColorIndex !== null
+        ? product.colorOptions[selectedColorIndex].imageUrl
+        : product.colorOptions[0].imageUrl;
+
+    const currentPrice = selectedStorageIndex !== null
+        ? product.storageOptions[selectedStorageIndex].price
+        : product.basePrice;
+
+    // El botón se deshabilita si falta alguna de las dos selecciones
+    const isButtonDisabled = selectedColorIndex === null || selectedStorageIndex === null;
+
+    const isStorageSelected = selectedStorageIndex !== null;
+    const priceDisplay = isStorageSelected
+        ? `${currentPrice} EUR`
+        : `From ${currentPrice} EUR`;
     const handleAddToCart = () => {
-        if (!product) return;
-        const colorSeleccionado = product.colorOptions[selectedColorIndex];
-        const almacenamientoSeleccionado = product.storageOptions[selectedStorageIndex];
+        if (!product || selectedColorIndex === null || selectedStorageIndex === null) return;
+
+        const colorSelected = product.colorOptions[selectedColorIndex];
+        const storageSelected = product.storageOptions[selectedStorageIndex];
+
         addToCart({
             id: product.id,
             brand: product.brand,
             name: product.name,
-            price: currentPrice,
-            imageUrl: colorSeleccionado.imageUrl,
-            selectedColor: colorSeleccionado.name,
-            selectedStorage: almacenamientoSeleccionado.capacity,
-            hexCode: colorSeleccionado.hexCode
+            price: storageSelected.price,
+            imageUrl: colorSelected.imageUrl,
+            selectedColor: colorSelected.name,
+            selectedStorage: storageSelected.capacity,
+            hexCode: colorSelected.hexCode
         });
-
-        // alert(`¡Añadido al carrito: ${product.name} (${almacenamientoSeleccionado.capacity} / ${colorSeleccionado.name})!`);
     };
-    const currentStorage = product.storageOptions[selectedStorageIndex];
-    const currentPrice = currentStorage.price;
-    const currentImageUrl = product.colorOptions[selectedColorIndex].imageUrl;
+
   return (
     <div className={styles.homePageContainer}>
         <header className={styles.pageHeader}>
@@ -82,14 +92,14 @@ export default function DetailPage() {
 
             <div className={styles.infoColumn}>     
                 <h1 className={styles.productName}>{product.name}</h1>
-                <p className={styles.basePrice}>{currentPrice} EUR</p>
+                <p className={styles.basePrice}>{priceDisplay}</p>
 
                 <div className={`${styles.selectorSection} ${styles.storageSection}`}>
                 <h2 className={styles.selectorTitle}>STORAGE ¿HOW MUCH SPACE DO YOU NEED?</h2>
                 <div className={styles.storageGrid}>
                     {product.storageOptions.map((option, index) => (
                     <button 
-                        key={option.price}
+                        key={option.capacity}
                         className={`${styles.storageOption} ${index === selectedStorageIndex ? styles.selected : ''}`}
                         onClick={() => setSelectedStorageIndex(index)}
                     >
@@ -119,8 +129,9 @@ export default function DetailPage() {
                 </div>
 
                 <button 
-                    className={styles.addToCartButton}
-                    onClick={() => handleAddToCart()}
+                    className={`${styles.addToCartButton} ${isButtonDisabled ? styles.disabled : ''}`}
+                    disabled={isButtonDisabled}
+                    onClick={handleAddToCart}
                 >
                 AÑADIR
                 </button>
@@ -128,11 +139,10 @@ export default function DetailPage() {
         </section>
 
         <section className={styles.specificationsSection}>
-        <h3 className={styles.specsTitle}>SPECIFICATIONS</h3>
-        <div className={styles.specsPlaceholder}>
-            [ Especifaciones ]
-        </div>
+
         </section>
+        <ProductSpecifications product={product} />
+        <SimilarItems currentProductId={product.id} />
     </div>
   );
 }

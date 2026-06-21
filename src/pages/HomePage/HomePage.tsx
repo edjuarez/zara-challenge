@@ -8,7 +8,6 @@ export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const effectRan = useRef(false);
 
-  // 1. Carga inicial del catálogo completo
   useEffect(() => {
     if (effectRan.current) return;
     
@@ -38,12 +37,12 @@ export default function HomePage() {
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} resultCount={products.length}/>
+      <SearchBar onSearch={handleSearch} resultCount={products.slice(0, 20).length}/>
       <div className={styles.homePageContainer}>
         <section className={styles.homePage}>
           <div className={styles.productsGrid}>
             {products.length > 0 ? (
-              products.map((product) => (
+              products.slice(0, 20).map((product) => (
                 <ProductCard key={product.id + Math.random()} product={product} />
               ))
             ) : (

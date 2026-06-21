@@ -21,6 +21,7 @@ export interface ProductDetail extends Product {
   selfieCamera: string;
   os: string;
   screenRefreshRate: string;
+  specs: Object;
 }
 
 const fetchFromApi = async (endpoint: string, options: RequestInit = {}) => {

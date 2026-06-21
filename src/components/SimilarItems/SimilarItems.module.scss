@@ -1,0 +1,19 @@
+.carouselContainer {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: 100px; /* Firefox */
+  &::-webkit-scrollbar { 
+    display: none; /* Chrome/Safari */
+  }
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  width: max-content;
+}
+.carouselItem {
+  width: 280px; 
+  flex-shrink: 0;
+}
