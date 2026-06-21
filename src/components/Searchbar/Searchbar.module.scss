@@ -1,0 +1,40 @@
+.searchBar {
+    gap: 1.5rem;
+    margin-bottom: 20px; // Línea base sutil
+    width: 100%;
+    max-width: 1720px; // Ajusta al ancho de tu contenedor
+    margin: 0 auto;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+
+  .searchInput {
+    flex: 1; // El input ocupa todo el espacio disponible
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    color: #333;
+    background: transparent;
+    width: 100%;
+    border-bottom: 1px solid #000000; 
+
+    &::placeholder {
+      color: #b0b0b0;
+      font-weight: 300;
+    }
+  }
+
+  .searchDivider {
+    width: 1px;
+    height: 24px;
+    background-color: #d1d1d1;
+  }
+
+  .results {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.05em; // Estilo de texto tipo 'label'
+    margin: 0;
+  }
+}

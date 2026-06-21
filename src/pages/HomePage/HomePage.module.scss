@@ -13,11 +13,12 @@ width: 100%;
 
 .productsGrid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 1px; 
-    background-color: #e5e5e5; 
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    // border-top: 0.5px solid #000000;
+    // border-right: 0.5px solid #000000;
+    // border: 0.25px solid #000000;
+    box-shadow: inset 0 0 0 0.25px #000000;
 }
 
 @media (max-width: 1024px) {

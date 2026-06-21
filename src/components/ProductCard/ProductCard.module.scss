@@ -9,6 +9,9 @@
   background: #ffffff;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  // border-bottom: 0.5px solid #000000;
+  // border-left: 0.5px solid #000000;
+  box-shadow: inset 0 0 0 0.25px #000000;
 
   &:hover {
     opacity: 0.8;

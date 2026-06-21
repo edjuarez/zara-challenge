@@ -22,6 +22,7 @@ export const SearchBar = ({ onSearch, resultCount }: { onSearch: (query: string)
     <div className={styles.searchBar}>
       <input
         type="text"
+        className={styles.searchInput}
         placeholder="Search for a smartphone..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
