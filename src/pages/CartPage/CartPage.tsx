@@ -1,10 +1,10 @@
 import { CartItemCard } from "../../components/CartItemCard/CartItemCard";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import styles from "./CartPage.module.scss";
 
 export default function CartPage(){
-    const { cart, removeFromCart } = useCart();
+    const { cart } = useCart();
     const totalPrice = cart.reduce((total, product) => total + (product.price || 0), 0);
     const navigate = useNavigate();
     console.log(cart, "sdj")

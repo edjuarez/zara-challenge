@@ -1,0 +1,23 @@
+.specificationsSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+width: 100%;
+background-color: #f6f6f6;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #999;
+font-size: 0.8rem;
+  .specLabel {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .specValue {
+
+  }
+}

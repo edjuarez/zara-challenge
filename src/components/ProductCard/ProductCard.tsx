@@ -1,13 +1,14 @@
 import styles from "./ProductCard.module.scss";
 import { useNavigate } from "react-router-dom";
+import { Product } from "../../services/api";
 
-export const ProductCard = ({ product }: { product: any }) => {
+export const ProductCard = ({ product }: { product: Product }) => {
     const navigate = useNavigate();
     return(
         <article className={styles.productCard}
         onClick={() => navigate(`/product/${product.id}`)}>
         <div className={styles.imageWrapper}>
-            <img src={product.imageUrl} alt={`${product.brand} ${product.model}`} />
+            <img src={product.imageUrl} alt={`${product.brand} ${product.name}`} />
 
         </div>
         <div className={styles.productInfo}>

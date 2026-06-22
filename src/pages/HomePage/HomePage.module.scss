@@ -4,16 +4,16 @@
   box-sizing: border-box;
 }
 .stickySearchWrapper {
-  position: -webkit-sticky; /* Para Safari */
+  position: -webkit-sticky; /* for Safari */
   position: sticky;
   top: $navbar-height;
-  z-index: 9999; /* Asegura que esté al frente */
-  background: white; /* Fundamental: si es transparente, no se notará que está pegado */
+  z-index: 9999;
+  background: white;
   width: 100%;
 }
 
 .catalogSection {
-width: 100%;
+  width: 100%;
   box-sizing: border-box;
   padding: 0 24px; 
   margin: 0 auto;
@@ -22,11 +22,8 @@ width: 100%;
 .productsGrid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    // border-top: 0.5px solid #000000;
-    // border-right: 0.5px solid #000000;
-    // border: 0.25px solid #000000;
-    box-shadow: inset 0 0 0 0.25px #000000;
+    gap: 1px;
+        padding: 1px $space-xl; //eliminar cuando cambie search
 }
 .loadMoreContainer {
   display: flex;

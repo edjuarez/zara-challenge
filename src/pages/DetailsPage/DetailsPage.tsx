@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, ProductDetail } from "../../services/api";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../hooks/useCart";
 import { ProductSpecifications } from "../../components/ProductSpecifications/ProductSpecifications";
 import { SimilarItems } from "../../components/SimilarItems/SimilarItems";
 import styles from "./DetailsPage.module.scss";
@@ -124,6 +124,7 @@ export default function DetailPage() {
                         />
                     </div>
                     ))}
+                    <span className={styles.colorName}>{selectedColorIndex !== null ? product.colorOptions[selectedColorIndex].name : ''}</span> 
                 </div>
                 </div>
 

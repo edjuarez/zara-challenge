@@ -7,11 +7,12 @@ export default function App() {
   return (
     <CartProvider>
       <Router>
-        <header className="header"><Navbar /></header>
-          
-          <main className="main-content">
-            <AppRoutes />
-          </main>
+        <header className="header">
+          <Navbar />
+        </header>
+        <main className="main-content">
+          <AppRoutes />
+        </main>
       </Router>
     </CartProvider>
   );

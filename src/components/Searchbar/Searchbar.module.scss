@@ -1,11 +1,12 @@
 .searchBar {
     gap: 1.5rem;
     margin-bottom: 20px; // Línea base sutil
-    width: 100%;
+    //width: 100%;
     max-width: 1720px; // Ajusta al ancho de tu contenedor
-    margin: 0 auto;
+    // margin: 0 auto;
     margin-bottom: 20px;
     box-sizing: border-box;
+    margin: 0 $space-xl;
 
   .searchInput {
     flex: 1; // El input ocupa todo el espacio disponible
