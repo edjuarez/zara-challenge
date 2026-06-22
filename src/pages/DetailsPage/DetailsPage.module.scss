@@ -1,10 +1,3 @@
-$bg-color: #ffffff;
-$line-color: #e5e5e5;
-$primary-text: #000000;
-$secondary-text: #767676;
-$grey-swatch: #999999;
-$add-btn-bg: #eeeeee;
-
 .detailPageContainer {
   width: 100%;
   background-color: $bg-color;
@@ -14,18 +7,17 @@ $add-btn-bg: #eeeeee;
 
 .pageHeader {
   width: 100%;
-  border-bottom: 1px solid $line-color;
-  padding: 1.5rem 40px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  padding: $space-lg 0;
 
   .backButton {
     background: none;
     border: none;
     color: $primary-text;
     cursor: pointer;
-    font-size: 0.75rem;
+    font-size: $font-size-sm;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     display: flex;

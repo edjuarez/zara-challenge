@@ -3,8 +3,12 @@
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    padding: 0 24px;
+    padding: 0 $space-xxl;
+    padding-top: 20px;
     .navbarLogo, .navbarCartIcon {
         cursor: pointer;
+    }
+    .emptyCartBtn {
+        opacity: 0;
     }
 }

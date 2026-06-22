@@ -18,7 +18,7 @@ export const Navbar = () => {
             </button>
             <div className={styles.navbarCartIcon}
             onClick={() => navigate(`/cart`)}>
-                <img src="/cart-icon.svg" alt="Cart Icon" />
+                <img src={cart.cartCount > 0 ? "/cart-icon-filled.svg" : "/cart-icon.svg"} alt="Cart Icon" />
                 <span className={styles.cartCount}> {cart.cartCount}</span>
             </div>
         </section>

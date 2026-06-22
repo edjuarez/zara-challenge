@@ -41,7 +41,13 @@ export default function HomePage() {
   };
   return (
     <>
-      <SearchBar onSearch={handleSearch} resultCount={products.slice(0, visibleCount).length}/>
+      {/* <SearchBar onSearch={handleSearch} resultCount={products.slice(0, visibleCount).length}/> */}
+      <div className={styles.stickySearchWrapper}>
+        <SearchBar 
+          onSearch={handleSearch} 
+          resultCount={products.slice(0, visibleCount).length}
+        />
+      </div>
       <div className={styles.homePageContainer}>
         <section className={styles.homePage}>
           <div className={styles.productsGrid}>

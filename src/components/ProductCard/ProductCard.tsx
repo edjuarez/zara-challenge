@@ -16,7 +16,7 @@ export const ProductCard = ({ product }: { product: any }) => {
             <span className={styles.model}>{product.name}</span>
             </div>
             <div className={styles.price}>
-            {product.basePrice ? `${product.basePrice} €` : "Consultar precio"}
+            {product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"}
             </div>
         </div>
         </article>

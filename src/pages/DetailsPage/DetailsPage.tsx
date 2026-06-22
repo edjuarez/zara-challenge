@@ -50,7 +50,6 @@ export default function DetailPage() {
         ? product.storageOptions[selectedStorageIndex].price
         : product.basePrice;
 
-    // El botón se deshabilita si falta alguna de las dos selecciones
     const isButtonDisabled = selectedColorIndex === null || selectedStorageIndex === null;
 
     const isStorageSelected = selectedStorageIndex !== null;
@@ -79,7 +78,7 @@ export default function DetailPage() {
     <div className={styles.homePageContainer}>
         <header className={styles.pageHeader}>
             <button className={styles.backButton} onClick={() => navigate("/")}>
-                ← BACK
+                 &lt; BACK
             </button>
         </header>
         <section className={styles.mainProductSection}>
