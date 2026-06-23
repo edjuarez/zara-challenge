@@ -95,7 +95,7 @@ export default function DetailPage() {
                 />
             </div>
 
-            <div className={styles.infoColumn}>     
+            <div className={styles.infoColumn}> 
                 <h1 className={styles.productName}>{product.name}</h1>
                 <p className={styles.basePrice}>{priceDisplay}</p>
 

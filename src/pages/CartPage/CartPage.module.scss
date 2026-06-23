@@ -9,7 +9,7 @@
 .cartItemsList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 0 27px;
     padding: 1px $space-xl;
 }
 .cartFooter {

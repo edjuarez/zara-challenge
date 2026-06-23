@@ -11,6 +11,7 @@ export const CartItemCard = ({ product }: { product: any }) => {
             <div className={styles.cartProductInfo}>
                 <p>{product.name}</p>
                 <p>{product.selectedStorage} | {product.selectedColor}</p>
+                <p>{product.price} EUR</p>
                 <p>Cantidad: {product.quantity}</p>
                 <button 
                     type="button"
