@@ -1,19 +1,67 @@
+.similarItemsSection {
+    width: 100%;
+    margin: 40px 70px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    max-width: 1200px;
+    
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+  .title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+}
+
 .carouselContainer {
-  width: 100%;
+  margin-right: calc(-50vw + 50%); 
+  padding-right: calc(50vw - 50% + 20px); 
+
   overflow-x: auto;
-  scrollbar-width: 100px; /* Firefox */
-  &::-webkit-scrollbar { 
-    display: none; /* Chrome/Safari */
+  overflow-y: hidden;
+  padding-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+  &:hover {
+    &::-webkit-scrollbar {
+      height: 7px;
+    }
+      &::-webkit-scrollbar-thumb {
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+
+  &::-webkit-scrollbar {
+    height: 5px;
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    margin-right: calc(5vw);
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #000000;
+    border-radius: 2px;
   }
 }
 
 .carouselTrack {
   display: flex;
-  gap: 1.5rem;
-  padding-bottom: 1rem;
+  gap: 20px;
   width: max-content;
+  padding: 1px;
 }
+
 .carouselItem {
-  width: 280px; 
-  flex-shrink: 0;
+  flex: 0 0 280px; 
+  width: 280px;
 }

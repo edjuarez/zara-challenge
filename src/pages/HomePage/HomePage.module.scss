@@ -23,13 +23,13 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1px;
-        padding: 1px $space-xl; //eliminar cuando cambie search
+    padding: 1px $space-xl; //eliminar cuando cambie search
 }
 .loadMoreContainer {
   display: flex;
-  justify-content: center; // Centrado horizontal
-  align-items: center;     // Centrado vertical
-  padding: 40px 0;         // Espacio superior e inferior según tu diseño
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
   width: 100%;
 }
 
@@ -37,16 +37,14 @@
   border-radius: 0;
   width: 260px;
   height: 56px;
-  font-size: $font-size-sm;     // 14px (ajusta según tu escala de rem)
-  letter-spacing: 0.1em;   // Espaciado elegante para botones en mayúsculas
+  font-size: $font-size-sm;
+  letter-spacing: 0.1em;
   font-weight: $font-weight-regular;
-  
-  // Estilos del borde y fondo
   background-color: transparent;
   color: $primary-text;
   border: 1px solid $primary-text;
   cursor: pointer;
-  transition: all 0.3s ease; // Animación suave al pasar el mouse
+  transition: all 0.3s ease;
 
   &:hover {
     background-color: $primary-text;

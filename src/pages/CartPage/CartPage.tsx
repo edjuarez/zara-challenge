@@ -12,7 +12,7 @@ export default function CartPage(){
         <>
             <section>
                 <header>
-                    <h1>Cart ({cart.length})</h1>
+                    <h1 className={styles.cartTitle}>Cart ({cart.length})</h1>
                 </header>
                 
                 <div className={styles.cartItemsList}>
@@ -23,15 +23,16 @@ export default function CartPage(){
                     ))}
                 </div>
                 <footer className={styles.cartFooter}>
-                    <button
-                    onClick={() => navigate("/")}>
+                    <button className={styles.continueBtn} onClick={() => navigate("/")}>
                         CONTINUE SHOPPING
                     </button>
-                    <div className={styles.totalInfo}>
-                        <span>TOTAL</span>
-                        <span> {totalPrice} EUR</span>
+                    <div className={styles.rightGroup}>
+                        <div className={styles.totalInfo}>
+                            <span className={styles.totalLabel}>TOTAL</span>
+                            <span className={styles.totalAmount}>{totalPrice} EUR</span>
+                        </div>
+                        <button className={styles.payBtn}>PAY</button>
                     </div>
-                    <button className={styles.payBtn}>PAY</button>
                 </footer>
             </section>
         </>

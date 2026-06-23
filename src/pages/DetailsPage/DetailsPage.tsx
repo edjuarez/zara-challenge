@@ -30,6 +30,11 @@ export default function DetailPage() {
 
     useEffect(() => {
         if (id) {
+            setIsLoading(true);
+            setSelectedColorIndex(null);
+            setSelectedStorageIndex(null);
+            window.scrollTo(0, 0);
+
             getProductById(id)
             .then((data) => {
                 setProduct(data);
@@ -59,13 +64,14 @@ export default function DetailPage() {
     const handleAddToCart = () => {
         if (!product || selectedColorIndex === null || selectedStorageIndex === null) return;
 
-        const colorSelected = product.colorOptions[selectedColorIndex];
-        const storageSelected = product.storageOptions[selectedStorageIndex];
+        const { colorOptions, storageOptions, id, brand, name } = product;
+        const colorSelected = colorOptions[selectedColorIndex];
+        const storageSelected = storageOptions[selectedStorageIndex];
 
         addToCart({
-            id: product.id,
-            brand: product.brand,
-            name: product.name,
+            id,
+            brand,
+            name,
             price: storageSelected.price,
             imageUrl: colorSelected.imageUrl,
             selectedColor: colorSelected.name,
@@ -109,23 +115,25 @@ export default function DetailPage() {
                 </div>
 
                 <div className={`${styles.selectorSection} ${styles.colorSection}`}>
-                <h2 className={styles.selectorTitle}>COLOR. PICK YOUR FAVOURITE.</h2>
-                <div className={styles.colorGrid}>
-                    {product.colorOptions.map((option, index) => (
-                    <div 
-                        key={option.hexCode}
-                        className={`${styles.colorSwatchWrapper} ${index === selectedColorIndex ? styles.selected : ''}`}
-                        onClick={() => setSelectedColorIndex(index)}
-                    >
+                    <h2 className={styles.selectorTitle}>COLOR. PICK YOUR FAVOURITE.</h2>
+                    <div className={styles.colorGrid}>
+                        {product.colorOptions.map((option, index) => (
                         <div 
-                        className={styles.colorSwatch}
-                        style={{ backgroundColor: option.hexCode }}
-                        title={option.name}
-                        />
+                            key={option.hexCode}
+                            className={`${styles.colorSwatchWrapper} 
+                            ${index === selectedColorIndex ? styles.selected : ''}
+                            ${index === selectedColorIndex ? styles.clicked : ''}`}
+                            onClick={() => setSelectedColorIndex(index)}
+                        >
+                            <div 
+                            className={styles.colorSwatch}
+                            style={{ backgroundColor: option.hexCode }}
+                            title={option.name}
+                            />
+                        </div>
+                        ))}
                     </div>
-                    ))}
                     <span className={styles.colorName}>{selectedColorIndex !== null ? product.colorOptions[selectedColorIndex].name : ''}</span> 
-                </div>
                 </div>
 
                 <button 

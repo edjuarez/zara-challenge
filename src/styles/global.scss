@@ -1,7 +1,7 @@
 :root {
   font-family: $font-brand;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
 
   color-scheme: light dark;
   color: rgba(24, 24, 24, 0.87);
@@ -15,6 +15,7 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .main-content {

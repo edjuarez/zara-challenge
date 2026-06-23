@@ -5,14 +5,15 @@ $font-brand: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $line-color: #e5e5e5;
 $primary-text: #000000;
 $secondary-text: #79736D;
-$third-text-color: #DF0000;
+$remove-text-color: #DF0000;
 $button-disabled-color: #F3F2F2;
 $button-primary-color: #1B1A18;
 $grey-swatch: #999999;
-$add-btn-bg: #eeeeee;
+$add-btn-bg: #ffffff;
 
-$font-size-xs: 0.75rem;   // 12px
-$font-size-sm: 0.875rem;  // 14px
+$font-size-xs: 0.65rem;   // 12px
+$font-size-xss: 0.75rem;   // 12px
+$font-size-sm: 0.87rem;  // 14px
 $font-size-base: 1rem;    // 16px
 $font-size-lg: 1.25rem;   // 20px
 $font-size-xl: 1.5rem;    // 24px
@@ -28,4 +29,4 @@ $navbar-height: 80px;
 $space-xs: 16px;
 $space-sm: 24px;
 $space-lg: 32px;
-$space-xl: 48px;
+$space-xl: 110px;

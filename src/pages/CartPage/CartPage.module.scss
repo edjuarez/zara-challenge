@@ -1,13 +1,102 @@
+.cartTitle {
+   font-size: $font-size-xl;
+   font-weight: 300;
+  // margin: $space-sm $space-xl;
+   border-top: 1px solid $primary-text;
+   padding: $space-sm $space-xl;
+   color: rgb(0, 0, 0);
+}
 .cartItemsList {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas fijas */
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    padding: 1px $space-xl;
 }
 .cartFooter {
+    margin: 80px 110px;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    border-top: 1px solid #eee;
-    margin-top: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.12em;
+    position: sticky;
+    top: 100%;
+
+    .continueBtn {
+        border-radius: 0;
+        width: 260px;
+        height: 56px;
+        font-size: $font-size-sm;
+        letter-spacing: 0.1em;
+        font-weight: $font-weight-regular;
+        background-color: transparent;
+        color: $primary-text;
+        border: 1px solid $primary-text;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: $primary-text;
+            color: #fff;
+        }
+    }
+
+    .rightGroup {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    }
+
+  .totalInfo {
+    display: flex;
+    gap: 24px;
+    font-size: $font-size-base;
+
+    .totalLabel {
+      font-weight: 300;
+      color: #111111;
+    }
+
+    .totalAmount {
+      font-weight: 400;
+      color: #111111;
+    }
+  }
+
+  .payBtn {
+    border-radius: 0;
+    width: 260px;
+    height: 56px;
+    font-size: $font-size-sm;
+    letter-spacing: 0.1em;
+    font-weight: $font-weight-regular;
+    background-color:  $primary-text;
+    color: rgb(255, 255, 255);
+    border: 1px solid $primary-text;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+    background-color: #fff;
+    color: $primary-text;
+    }
+  }
 }
+
+
+// cartFooter ---
+// padding: 0 110px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+//     letter-spacing: 0.12em;
+//     position: fixed;
+//     top: 90%;
+//     width: stretch;
