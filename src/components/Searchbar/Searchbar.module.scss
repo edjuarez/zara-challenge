@@ -22,9 +22,9 @@
     width: 100%;
     border-bottom: 1px solid #000000; 
 
-  @include tablet {
-    font-size: $font-size-lg;
-  }
+    @include tablet {
+      font-size: $font-size-lg;
+    }
     &::placeholder {
       color: #b0b0b0;
       font-weight: 300;
@@ -36,7 +36,34 @@
     height: 24px;
     background-color: #d1d1d1;
   }
+.clearButton {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: color 0.2s ease;
 
+  &:hover {
+    color: #333;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary-text;
+    border-radius: 50%;
+  }
+}
   .results {
     font-size: $font-size-xs;
     font-weight: $font-weight-light;

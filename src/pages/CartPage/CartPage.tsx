@@ -10,14 +10,13 @@ export default function CartPage(){
     console.log(cart, "sdj")
     return(
         <>
-        <section className={styles.cartPage}> {/* He añadido esta clase para mayor control global opcional */}
+        <section className={styles.cartPage}>
             <header>
                 <h1 className={styles.cartTitle}>Cart ({cartCount})</h1>
             </header>
             
             <div className={styles.cartItemsList}>
                 {cart.map(item => (
-                    /* NUEVO CONTENEDOR ENVOLTORIO */
                     <div key={item.cartItemId} className={styles.itemCardWrapper}>
                         <CartItemCard 
                             product={item}

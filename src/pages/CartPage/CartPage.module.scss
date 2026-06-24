@@ -49,8 +49,8 @@
 }
 
 .cartFooter {
-    margin: 40px 110px;
-    padding: 0;
+  margin: 40px 110px;
+  padding: 0;
   padding: 0;
   box-sizing: border-box;
 
@@ -90,7 +90,10 @@
     border: 1px solid $primary-text;
     cursor: pointer;
     transition: all 0.3s ease;
-
+    &:focus-visible {
+      outline: 2px solid $primary-text;
+      outline-offset: 4px;
+    }
     &:hover {
       background-color: $primary-text;
       color: #fff;
@@ -146,7 +149,10 @@
     border: 1px solid $primary-text;
     cursor: pointer;
     transition: all 0.3s ease;
-
+    &:focus-visible {
+      outline: 2px solid $primary-text;
+      outline-offset: 4px;
+    }
     &:hover {
       background-color: #fff;
       color: $primary-text;

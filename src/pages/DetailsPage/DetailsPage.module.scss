@@ -142,7 +142,8 @@
         border-radius: 0;
 
         &:focus {
-          outline: none !important;
+          outline: 1px solid #000000;
+          z-index: 1;
           box-shadow: none !important;
         }
 
@@ -153,13 +154,15 @@
         &:active, &.selected {
           border-color: $primary-text;
           border-radius: 0;
+          outline: 0.8px solid #000000;
+          border: 0;
+          z-index: 1;
         }
       }
     }
 
   .colorGrid {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
     font-size: $font-size-xs;
     margin-bottom: 10px;
@@ -167,14 +170,23 @@
     .colorSwatchWrapper {
       position: relative;
       cursor: pointer;
-
-
-      &.selected .colorSwatch {
-        border: 1px solid transparent;
-
-        box-shadow: 0 0 0 2px $bg-color, 0 0 0 3px $primary-text; 
+      background: none;
+      &:hover {
+        outline: none;
+        border: none;
       }
-
+      &:active, &.selected {
+        outline: none;
+        border: none;
+        border-color: $grey-swatch;
+        box-shadow: 0 0 0 2px $bg-color, 0 0 0 3px $grey-swatch;
+        border-radius: 0;
+      }
+      &:focus {
+        outline: 1px solid #000000;
+        z-index: 1;
+        box-shadow: none !important;
+      }
       .colorSwatch {
         width: 30px;
         height: 30px;
@@ -186,6 +198,21 @@
         &:hover {
           border-color: $grey-swatch;
           box-shadow: 0 0 0 2px $bg-color, 0 0 0 3px $grey-swatch;
+        }
+        &:focus {
+          outline: 10px solid #000000;
+          z-index: 1;
+          box-shadow: none !important;
+        }
+
+        &:hover {
+          border-color: $grey-swatch;
+        }
+        &:active, &.selected {
+          border-color: $primary-text;
+          border-radius: 0;
+          outline: 0.8px solid #000000;
+          z-index: 1;
         }
       }
     }
@@ -211,6 +238,11 @@
         color: $primary-text;
         border: 1px solid $primary-text;
       }
+    }
+    .disabled {
+      background-color: $button-disabled-color;
+      color: $button-disabled-text-color;
+      cursor: not-allowed;
     }
   }
 }

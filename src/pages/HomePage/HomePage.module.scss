@@ -34,7 +34,7 @@
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
+  gap: 0px;
   padding: 1px $space-xl;
   -webkit-font-smoothing: antialiased;
 

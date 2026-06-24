@@ -84,7 +84,9 @@ export default function DetailPage() {
   return (
     <>
         <header className={styles.pageHeader}>
-            <button className={styles.backButton} onClick={() => navigate("/")}>
+            <button 
+            className={styles.backButton} onClick={() => navigate("/")}
+            aria-label="Volver al catálogo principal">
                  &lt; BACK
             </button>
         </header>
@@ -98,16 +100,17 @@ export default function DetailPage() {
 
             <div className={styles.infoColumn}> 
                 <h1 className={styles.productName}>{product.name}</h1>
-                <p className={styles.basePrice}>{priceDisplay}</p>
+                <p className={styles.basePrice} aria-live="polite">{priceDisplay}</p>
 
                 <div className={`${styles.selectorSection} ${styles.storageSection}`}>
                 <h2 className={styles.selectorTitle}>STORAGE ¿HOW MUCH SPACE DO YOU NEED?</h2>
-                <div className={styles.storageGrid}>
+                <div className={styles.storageGrid} role="group">
                     {product.storageOptions.map((option, index) => (
                     <button 
                         key={option.capacity}
                         className={`${styles.storageOption} ${index === selectedStorageIndex ? styles.selected : ''}`}
                         onClick={() => setSelectedStorageIndex(index)}
+                        aria-pressed={index === selectedStorageIndex}
                     >
                         {option.capacity}
                     </button>
@@ -116,25 +119,29 @@ export default function DetailPage() {
                 </div>
 
                 <div className={`${styles.selectorSection} ${styles.colorSection}`}>
-                    <h2 className={styles.selectorTitle}>COLOR. PICK YOUR FAVOURITE.</h2>
-                    <div className={styles.colorGrid}>
-                        {product.colorOptions.map((option, index) => (
+                <h2 className={styles.selectorTitle}>COLOR. PICK YOUR FAVOURITE.</h2>
+                <div className={styles.colorGrid} role="group" aria-label="Opciones de color">
+                    {product.colorOptions.map((option, index) => (
+                    <button 
+                        type="button"
+                        key={option.hexCode}
+                        className={`${styles.colorSwatchWrapper} 
+                        ${index === selectedColorIndex ? styles.selected : ''}
+                        ${index === selectedColorIndex ? styles.clicked : ''} `}
+                        onClick={() => setSelectedColorIndex(index)}
+                        aria-label={`Color ${option.name}`}
+                        aria-pressed={index === selectedColorIndex}
+                    >
                         <div 
-                            key={option.hexCode}
-                            className={`${styles.colorSwatchWrapper} 
-                            ${index === selectedColorIndex ? styles.selected : ''}
-                            ${index === selectedColorIndex ? styles.clicked : ''}`}
-                            onClick={() => setSelectedColorIndex(index)}
-                        >
-                            <div 
-                            className={styles.colorSwatch}
-                            style={{ backgroundColor: option.hexCode }}
-                            title={option.name}
-                            />
-                        </div>
-                        ))}
-                    </div>
-                    <span className={styles.colorName}>{selectedColorIndex !== null ? product.colorOptions[selectedColorIndex].name : ''}</span> 
+                        className={styles.colorSwatch}
+                        style={{ backgroundColor: option.hexCode }}
+                        />
+                    </button>
+                    ))}
+                </div>
+                <span className={styles.colorName} aria-live="polite">
+                    {selectedColorIndex !== null ? product.colorOptions[selectedColorIndex].name : ''}
+                </span> 
                 </div>
 
                 <button 

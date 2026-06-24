@@ -9,12 +9,24 @@ export default function HomePage() {
   const effectRan = useRef(false);
   const [visibleCount, setVisibleCount] = useState(20);
 
+  const deduplicateProducts = (rawProducts: Product[]): Product[] => {
+    const seenIds = new Set();
+    return rawProducts.filter((product) => {
+      if (seenIds.has(product.id)) {
+        return false;
+      }
+      seenIds.add(product.id);
+      return true;
+    });
+  };
+
   useEffect(() => {
     if (effectRan.current) return;
     
     getProducts()
       .then((data) => {
-        setProducts(data);
+        const cleanProducts = deduplicateProducts(data);
+        setProducts(cleanProducts);
       })
       .catch((error) => {
         console.error("ERROR AL LLAMAR LA API:", error);
@@ -28,7 +40,7 @@ export default function HomePage() {
   const handleSearch = useCallback(async (query: string) => {
     getProducts(query)
       .then((data) => {
-        setProducts(data);
+        setProducts(deduplicateProducts(data));
       })
       .catch((error) => {
         console.error("ERROR AL LLAMAR LA API:", error);
