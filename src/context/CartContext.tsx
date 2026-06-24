@@ -29,7 +29,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-
   useEffect(() => {
     localStorage.setItem("shopping-cart", JSON.stringify(cart));
   }, [cart]);

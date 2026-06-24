@@ -41,34 +41,31 @@ export default function HomePage() {
   };
   return (
     <>
-      {/* <SearchBar onSearch={handleSearch} resultCount={products.slice(0, visibleCount).length}/> */}
       <div className={styles.stickySearchWrapper}>
         <SearchBar 
           onSearch={handleSearch} 
           resultCount={products.slice(0, visibleCount).length}
         />
       </div>
-      <div className={styles.homePageContainer}>
-        <section className={styles.homePage}>
-          <div className={styles.productsGrid}>
-            {products.length > 0 ? (
-              products.slice(0, visibleCount).map((product) => (
-                <ProductCard key={product.id + Math.random()} product={product} />
-              ))
-            ) : (
-              <p>No se encontraron resultados.</p>
-            )}
-          </div>
-          {/* Botón "Ver más" - Solo aparece si hay más productos para mostrar */}
-          {visibleCount < products.length && (
-            <div className={styles.loadMoreContainer}>
-              <button className={styles.loadMoreButton} onClick={handleShowMore}>
-                VER MÁS
-              </button>
-            </div>
+      <section className={styles.homePage}>
+        <div className={styles.productsGrid}>
+          {products.length > 0 ? (
+            products.slice(0, visibleCount).map((product) => (
+              <ProductCard key={product.id + Math.random()} product={product} />
+            ))
+          ) : (
+            <p>No se encontraron resultados.</p>
           )}
-        </section>
-      </div>
+        </div>
+
+        {visibleCount < products.length && (
+          <div className={styles.loadMoreContainer}>
+            <button className={styles.loadMoreButton} onClick={handleShowMore}>
+              VER MÁS
+            </button>
+          </div>
+        )}
+      </section>
     </>
   );
 }

@@ -6,15 +6,13 @@ export default defineConfig({
   css: {
       preprocessorOptions: {
         scss: {
-          // Esto le dice a SCSS: "Antes de compilar cualquier archivo .scss, 
-          // inyecta este archivo de variables"
           additionalData: `@use "@/styles/_variables.scss" as *;`
         }
       }
     },
     resolve: {
       alias: {
-        '@': '/src' // Esto ayuda a que los imports sean más limpios
+        '@': '/src'
       }
     }
 })

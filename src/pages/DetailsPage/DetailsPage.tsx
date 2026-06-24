@@ -78,10 +78,11 @@ export default function DetailPage() {
             selectedStorage: storageSelected.capacity,
             hexCode: colorSelected.hexCode
         });
+        navigate("/cart");
     };
 
   return (
-    <div className={styles.homePageContainer}>
+    <>
         <header className={styles.pageHeader}>
             <button className={styles.backButton} onClick={() => navigate("/")}>
                  &lt; BACK
@@ -145,12 +146,8 @@ export default function DetailPage() {
                 </button>
             </div>
         </section>
-
-        <section className={styles.specificationsSection}>
-
-        </section>
         <ProductSpecifications product={product} />
         <SimilarItems currentProductId={product.id} />
-    </div>
+    </>
   );
 }

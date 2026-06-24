@@ -5,7 +5,7 @@ $font-brand: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $line-color: #e5e5e5;
 $primary-text: #000000;
 $secondary-text: #79736D;
-$remove-text-color: #DF0000;
+$remove-text-color: #cd0303;
 $button-disabled-color: #F3F2F2;
 $button-primary-color: #1B1A18;
 $grey-swatch: #999999;
@@ -30,3 +30,6 @@ $space-xs: 16px;
 $space-sm: 24px;
 $space-lg: 32px;
 $space-xl: 110px;
+
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 600px;

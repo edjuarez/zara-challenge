@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CartPage.module.scss";
 
 export default function CartPage(){
-    const { cart } = useCart();
+    const { cart, cartCount } = useCart();
     const totalPrice = cart.reduce((total, product) => total + (product.price || 0), 0);
     const navigate = useNavigate();
     console.log(cart, "sdj")
@@ -12,7 +12,7 @@ export default function CartPage(){
         <>
             <section>
                 <header>
-                    <h1 className={styles.cartTitle}>Cart ({cart.length})</h1>
+                    <h1 className={styles.cartTitle}>Cart ({cartCount})</h1>
                 </header>
                 
                 <div className={styles.cartItemsList}>
@@ -31,7 +31,8 @@ export default function CartPage(){
                             <span className={styles.totalLabel}>TOTAL</span>
                             <span className={styles.totalAmount}>{totalPrice} EUR</span>
                         </div>
-                        <button className={styles.payBtn}>PAY</button>
+                        <button className={styles.payBtn}
+                        onClick={() => alert(`Compra de ${cartCount} items realizada con éxito!`)}>PAY</button>
                     </div>
                 </footer>
             </section>

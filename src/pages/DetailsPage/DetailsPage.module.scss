@@ -37,13 +37,10 @@
 }
 
 .mainProductSection {
-  max-width: 1200px;
-  margin: 0 auto;
-  //padding: 4rem 40px;
-  display: flex;
-  //gap: 4rem;
-  align-items: center;
-  flex-wrap: wrap;
+    display: grid;
+    justify-content: center;
+    grid-auto-flow: column;
+    gap: 15px;
 
   .imageColumn {
     flex: 1 1 500px;
@@ -100,7 +97,7 @@
       display: flex;
       flex-wrap: wrap;
       color: $primary-text;
-      width: 60%;
+      width: 77%;
       border-radius: 0;
 
       .storageOption {

@@ -1,10 +1,13 @@
 import { useCart } from "../../hooks/useCart";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 
 export const Navbar = () => {
-    const cart = useCart();
+    const { cartCount } = useCart();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isCartPage = location.pathname === '/cart';   
 
     return(
         <section className={styles.navbar}>
@@ -12,15 +15,13 @@ export const Navbar = () => {
                 onClick={() => navigate(`/`)}>
                 <img src="/logo.svg" alt="Logo" />
             </div>
-            <button className={styles.emptyCartBtn}
-            onClick={() => cart.clearCart()}>
-                Empty Cart
-            </button>
-            <div className={styles.navbarCartIcon}
-            onClick={() => navigate(`/cart`)}>
-                <img className={styles.cartLogo} src={cart.cartCount > 0 ? "/cart-icon-filled.svg" : "/cart-icon.svg"} alt="Cart Icon" />
-                <span className={styles.cartCount}> {cart.cart.length}</span>
-            </div>
+            {!isCartPage && (
+                <div className={styles.navbarCartIcon}
+                onClick={() => navigate(`/cart`)}>
+                    <img className={styles.cartLogo} src={cartCount > 0 ? "/cart-icon-filled.svg" : "/cart-icon.svg"} alt="Cart Icon" />
+                    <span className={styles.cartCount}> {cartCount}</span>
+                </div>
+            )}
         </section>
     )
 }
