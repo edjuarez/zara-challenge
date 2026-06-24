@@ -10,32 +10,39 @@ export default function CartPage(){
     console.log(cart, "sdj")
     return(
         <>
-            <section>
-                <header>
-                    <h1 className={styles.cartTitle}>Cart ({cartCount})</h1>
-                </header>
-                
-                <div className={styles.cartItemsList}>
-                    {cart.map(item => (
+        <section className={styles.cartPage}> {/* He añadido esta clase para mayor control global opcional */}
+            <header>
+                <h1 className={styles.cartTitle}>Cart ({cartCount})</h1>
+            </header>
+            
+            <div className={styles.cartItemsList}>
+                {cart.map(item => (
+                    /* NUEVO CONTENEDOR ENVOLTORIO */
+                    <div key={item.cartItemId} className={styles.itemCardWrapper}>
                         <CartItemCard 
-                        key={item.cartItemId}
-                        product={item}/>
-                    ))}
-                </div>
-                <footer className={styles.cartFooter}>
-                    <button className={styles.continueBtn} onClick={() => navigate("/")}>
-                        CONTINUE SHOPPING
-                    </button>
-                    <div className={styles.rightGroup}>
-                        <div className={styles.totalInfo}>
-                            <span className={styles.totalLabel}>TOTAL</span>
-                            <span className={styles.totalAmount}>{totalPrice} EUR</span>
-                        </div>
-                        <button className={styles.payBtn}
-                        onClick={() => alert(`Compra de ${cartCount} items realizada con éxito!`)}>PAY</button>
+                            product={item}
+                        />
                     </div>
-                </footer>
-            </section>
+                ))}
+            </div>
+            <footer className={styles.cartFooter}>
+                <button className={styles.continueBtn} onClick={() => navigate("/")}>
+                    CONTINUE SHOPPING
+                </button>
+                <div className={styles.rightGroup}>
+                    <div className={styles.totalInfo}>
+                        <span className={styles.totalLabel}>TOTAL</span>
+                        <span className={styles.totalAmount}>{totalPrice} EUR</span>
+                    </div>
+                    <button 
+                        className={styles.payBtn}
+                        onClick={() => alert(`Compra de ${cartCount} items realizada con éxito!`)}
+                    >
+                        PAY
+                    </button>
+                </div>
+            </footer>
+        </section>
         </>
     )
 }

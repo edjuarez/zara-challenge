@@ -5,7 +5,12 @@
     margin-bottom: 20px;
     box-sizing: border-box;
     margin: 0 $space-xl;
-
+  @include mobile {
+    margin: 0 $space-sm;
+  }
+  @include tablet {
+    margin: 0 $space-md;
+  }
   .searchInput {
     flex: 1;
     border: none;
@@ -17,6 +22,9 @@
     width: 100%;
     border-bottom: 1px solid #000000; 
 
+  @include tablet {
+    font-size: $font-size-lg;
+  }
     &::placeholder {
       color: #b0b0b0;
       font-weight: 300;
@@ -35,5 +43,11 @@
     color: $primary-text;
     letter-spacing: 0.05em;
     margin: $space-lg 0;
+    @include mobile {
+      font-size: $font-size-lg;
+    }
+    @include tablet {
+      font-size: $font-size-base;
+    }
   }
 }

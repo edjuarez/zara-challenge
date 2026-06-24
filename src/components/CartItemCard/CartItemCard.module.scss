@@ -1,7 +1,7 @@
 .cartItemCard {
   display: flex;
   align-items: flex-start; 
-  gap: 15px;               
+  gap: 8px;               
   padding: 40px 0;         
   width: 100%;
   max-width: 800px;
@@ -16,12 +16,13 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      filter: drop-shadow(2px 3px 6px #656565);
     }
   }
 
   .cartProductInfo {
     flex: 1;
-    height: 150px;
+    height: 180px;
     display: flex;
     flex-direction: column;
     gap: 8px;              
@@ -29,17 +30,20 @@
 
     p {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: $font-size-xs;     
+      font-size: $font-size-xss;     
       font-weight: 300;    
       letter-spacing: 0.12em; 
       text-transform: uppercase; 
       color: #000000;
       margin: 0;
+      @include tablet {
+        font-size: $font-size-sm;
+      }  
     }
 
     .removeBtn {
       align-self: flex-start;
-      font-size: $font-size-xss;
+      font-size: $font-size-base;
       background: none;
       border: none;
       padding: 0;
@@ -50,7 +54,9 @@
       color: #ff4a4a;      
       cursor: pointer;
       transition: opacity 0.2s ease;
-
+      @include tablet {
+        font-size: $font-size-sm;
+      }
       &:hover {
         opacity: 0.7;      
       }

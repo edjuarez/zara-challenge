@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: $navbar-height;
     padding: 0 $space-xl;
     padding-top: 20px;
     .navbarLogo, .navbarCartIcon {
@@ -14,4 +14,10 @@
     .cartLogo {
         height: 20px;
     }
+  @include mobile {
+    padding: 0 $space-sm;
+  }
+  @include tablet {
+    padding: 0 $space-md;
+  }
 }

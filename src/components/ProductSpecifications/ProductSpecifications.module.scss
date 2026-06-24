@@ -1,10 +1,12 @@
 .specificationsSection {
-    width: 100%;
-    margin: 40px 70px;
+    margin: 40px $details-page-margin;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    max-width: 1200px;
-    margin: 0 auto;
+    @include tablet {
+      font-size: $font-size-base;
+      width: auto;
+      margin: 40px 20px;
+    }
 
   .title {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -38,22 +40,26 @@
 
   .specLabel {
     width: 30%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.05em;
     color: #111111;
     text-transform: uppercase;
     padding-right: 20px;
+    @include tablet {
+      font-size: $font-size-sm;
+    }
   }
 
   .specValue {
     width: 70%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
     font-weight: 300;
     line-height: 1.6;
     color: #333333;
+    @include tablet {
+      font-size: $font-size-sm;
+    }
   }
 }
 

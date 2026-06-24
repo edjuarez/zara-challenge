@@ -13,6 +13,12 @@
   padding: $space-lg 0;
   margin: 0 $space-xl;
 
+  @include mobile {
+    margin: 0 $space-sm;
+  }
+  @include tablet {
+    margin: 0 $space-md;
+  }
   .backButton {
     background: none;
     border: none;
@@ -25,6 +31,7 @@
     align-items: center;
     gap: 8px;
     padding: 0;
+
 
     &:hover {
       color: $secondary-text;
@@ -41,6 +48,17 @@
     justify-content: center;
     grid-auto-flow: column;
     gap: 15px;
+    @include mobile {
+      grid-auto-flow: row;
+          padding: 2rem 20px;
+    gap: 2rem;
+    flex-direction: column-reverse;
+    }
+    @include tablet {
+          padding: 2rem 20px;
+    gap: 2rem;
+    flex-direction: column-reverse;
+    }
 
   .imageColumn {
     flex: 1 1 500px;
@@ -49,11 +67,18 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-
+    @include tablet {
+      height: auto;
+      flex: 1 1 100%;
+      padding: 0;
+    }
     img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
+    @include tablet {
+  max-height: 400px;
+    }
     }
   }
 
@@ -63,6 +88,9 @@
     flex-direction: column;
     justify-content: center;
     padding: 60px;
+    @include tablet {
+      padding: 0;
+    }
 
     .productName {
       font-weight: 300;
@@ -183,29 +211,6 @@
         color: $primary-text;
         border: 1px solid $primary-text;
       }
-    }
-  }
-}
-
-
-@media (max-width: 900px) {
-  .mainProductSection {
-    padding: 2rem 20px;
-    gap: 2rem;
-    flex-direction: column-reverse;
-
-    .imageColumn {
-      height: auto;
-      flex: 1 1 100%;
-      padding: 0;
-
-      img {
-        max-height: 400px;
-      }
-    }
-
-    .infoColumn {
-      flex: 1 1 100%;
     }
   }
 }

@@ -2,11 +2,19 @@
   width: 100%;
   padding: 0 0 4rem 0;
   box-sizing: border-box;
+
+  @include mobile {
+    padding-bottom: 2rem;
+  }
+  @include tablet {
+    padding-bottom: 2rem;
+  }
 }
+
 .stickySearchWrapper {
-  position: -webkit-sticky; /* for Safari */
+  position: -webkit-sticky;
   position: sticky;
-  top: $navbar-height;
+  top: 79px;
   z-index: 9999;
   background: white;
   width: 100%;
@@ -17,20 +25,41 @@
   box-sizing: border-box;
   padding: 0 24px; 
   margin: 0 auto;
+
+  @include mobile {
+    padding: 0 12px;
+  }
 }
 
 .productsGrid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    padding: 1px $space-xl; //eliminar cuando cambie search
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  padding: 1px $space-xl;
+  -webkit-font-smoothing: antialiased;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1px $space-md;
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1px $space-sm;
+    gap: 8px;
+  }
 }
+
 .loadMoreContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 0;
   width: 100%;
+
+  @include mobile {
+    padding: 24px 0;
+  }
 }
 
 .loadMoreButton {
@@ -50,15 +79,20 @@
     background-color: $primary-text;
     color: #fff;
   }
-}
-@media (max-width: 1024px) {
-  .productsGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
-  .productsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary-text;
+    outline-offset: 4px;
+  }
+
+  @include mobile {
+    width: 100%;
+    max-width: 280px;
+    height: 48px;
+    font-size: $font-size-xs;
   }
 }

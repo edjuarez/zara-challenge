@@ -28,7 +28,6 @@ export default function HomePage() {
   const handleSearch = useCallback(async (query: string) => {
     getProducts(query)
       .then((data) => {
-        console.log(data, "API SEARCH DATA")
         setProducts(data);
       })
       .catch((error) => {
@@ -39,6 +38,7 @@ export default function HomePage() {
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 20);
   };
+
   return (
     <>
       <div className={styles.stickySearchWrapper}>
@@ -47,14 +47,14 @@ export default function HomePage() {
           resultCount={products.slice(0, visibleCount).length}
         />
       </div>
-      <section className={styles.homePage}>
+      <section className={styles.homePage} aria-label="Catálogo de productos">
         <div className={styles.productsGrid}>
           {products.length > 0 ? (
             products.slice(0, visibleCount).map((product) => (
-              <ProductCard key={product.id + Math.random()} product={product} />
+              <ProductCard key={product.id} product={product} />
             ))
           ) : (
-            <p>No se encontraron resultados.</p>
+            <p role="status">No se encontraron resultados.</p>
           )}
         </div>
 

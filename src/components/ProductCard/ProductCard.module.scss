@@ -9,6 +9,7 @@
   background: #ffffff;
   cursor: pointer;
   box-shadow: 0 0 0 1px #e5e5e5;
+      box-shadow: 0 0 0 0.7px #000000;
   position: relative;
   overflow: hidden; 
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
@@ -61,8 +62,10 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
+          
          &:hover {
-          mix-blend-mode: multiply
+          mix-blend-mode: multiply;
+              
          }
     }
   }
