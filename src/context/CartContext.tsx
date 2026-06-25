@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, ReactNode, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from "react";
 
 export interface CartItem {
   cartItemId: string;
@@ -37,12 +43,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const cartItemId = `${newItem.id}-${newItem.hexCode}-${newItem.selectedStorage.replace(/\s/g, "")}`;
 
     setCart((prevCart) => {
-      const existingItemIndex = prevCart.findIndex((item) => item.cartItemId === cartItemId);
+      const existingItemIndex = prevCart.findIndex(
+        (item) => item.cartItemId === cartItemId,
+      );
 
       if (existingItemIndex > -1) {
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += 1;
-        console.log("agrego nuevo o actualizo")
+        console.log("agrego nuevo o actualizo");
         return updatedCart;
       }
 
@@ -51,7 +59,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const removeFromCart = (cartItemId: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.cartItemId !== cartItemId));
+    setCart((prevCart) =>
+      prevCart.filter((item) => item.cartItemId !== cartItemId),
+    );
   };
 
   const clearCart = () => setCart([]);
@@ -59,7 +69,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, cartCount, clearCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, cartCount, clearCart, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );
@@ -71,6 +83,6 @@ export function useCart() {
   if (context === undefined) {
     throw new Error("useCart debe ser usado dentro de un CartProvider");
   }
-  
+
   return context;
 }

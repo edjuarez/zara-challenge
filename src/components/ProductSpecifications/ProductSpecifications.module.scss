@@ -1,12 +1,12 @@
 .specificationsSection {
-    margin: 40px $details-page-margin;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    @include tablet {
-      font-size: $font-size-base;
-      width: auto;
-      margin: 40px 20px;
-    }
+  margin: 40px $details-page-margin;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include tablet {
+    font-size: $font-size-base;
+    width: auto;
+    margin: 40px 20px;
+  }
 
   .title {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -28,7 +28,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #cccccc; 
+  border-top: 1px solid #cccccc;
 }
 
 .specRow {
@@ -64,5 +64,5 @@
 }
 
 .scrollBar {
-  display: none; 
+  display: none;
 }

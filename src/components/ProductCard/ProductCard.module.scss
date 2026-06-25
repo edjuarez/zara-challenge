@@ -11,13 +11,15 @@
   box-shadow: 0 0 0 1px #e5e5e5;
   box-shadow: 0 0 0 0.7px #000000;
   position: relative;
-  overflow: hidden; 
-  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -36,17 +38,23 @@
 
     .productInfo {
       .details {
-        .brand { color: #aaaaaa; }
-        .model { color: #ffffff; }
+        .brand {
+          color: #aaaaaa;
+        }
+        .model {
+          color: #ffffff;
+        }
       }
-      .price { color: #ffffff; }
+      .price {
+        color: #ffffff;
+      }
     }
   }
 
   .imageWrapper,
   .productInfo {
     position: relative;
-    z-index: 2; 
+    z-index: 2;
   }
 
   .imageWrapper {
@@ -62,10 +70,9 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-          
+
       &:hover {
-      mix-blend-mode: multiply;
-          
+        mix-blend-mode: multiply;
       }
     }
   }

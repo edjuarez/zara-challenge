@@ -19,11 +19,26 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </div>
         <div className={styles.productInfo}>
           <div className={styles.details}>
-            <span className={styles.brand} aria-label={`Marca: ${product.brand}`}>{product.brand}</span>
-            <span className={styles.model} aria-label={`Modelo: ${product.name}`}>{product.name}</span>
+            <span
+              className={styles.brand}
+              aria-label={`Marca: ${product.brand}`}
+            >
+              {product.brand}
+            </span>
+            <span
+              className={styles.model}
+              aria-label={`Modelo: ${product.name}`}
+            >
+              {product.name}
+            </span>
           </div>
-          <div className={styles.price} aria-label={`Precio: ${product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"}`}>
-            {product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"}
+          <div
+            className={styles.price}
+            aria-label={`Precio: ${product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"}`}
+          >
+            {product.basePrice
+              ? `${product.basePrice} EUR`
+              : "Consultar precio"}
           </div>
         </div>
       </Link>

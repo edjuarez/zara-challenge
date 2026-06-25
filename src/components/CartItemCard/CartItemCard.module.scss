@@ -1,17 +1,17 @@
 .cartItemCard {
   display: flex;
-  align-items: flex-start; 
-  gap: 8px;               
-  padding: 40px 0;         
+  align-items: flex-start;
+  gap: 8px;
+  padding: 40px 0;
   width: 100%;
   max-width: 800px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   .imageWrapper {
-    flex: 0 0 160px;       
+    flex: 0 0 160px;
     height: 200px;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -25,20 +25,20 @@
     height: 180px;
     display: flex;
     flex-direction: column;
-    gap: 8px;              
-    padding-top: 10px;     
+    gap: 8px;
+    padding-top: 10px;
 
     p {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: $font-size-xss;     
-      font-weight: 300;    
-      letter-spacing: 0.12em; 
-      text-transform: uppercase; 
+      font-size: $font-size-xss;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: #000000;
       margin: 0;
       @include tablet {
         font-size: $font-size-sm;
-      }  
+      }
     }
 
     .removeBtn {
@@ -47,18 +47,18 @@
       background: none;
       border: none;
       padding: 0;
-      margin-top: auto; 
+      margin-top: auto;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 400;
       letter-spacing: 0.05em;
-      color: #ff4a4a;      
+      color: #ff4a4a;
       cursor: pointer;
       transition: opacity 0.2s ease;
       @include tablet {
         font-size: $font-size-sm;
       }
       &:hover {
-        opacity: 0.7;      
+        opacity: 0.7;
       }
       &:focus {
         // outline: none !important;
@@ -66,10 +66,10 @@
         outline: none;
       }
       &:focus-visible {
-      outline: 2px solid $primary-text;
-      outline-offset: 4px;
-      border-radius: 0;
-    }
+        outline: 2px solid $primary-text;
+        outline-offset: 4px;
+        border-radius: 0;
+      }
     }
   }
 }

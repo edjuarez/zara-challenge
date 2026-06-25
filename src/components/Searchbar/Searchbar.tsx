@@ -1,7 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./SearchBar.module.scss";
 
-export const SearchBar = ({ onSearch, resultCount }: { onSearch: (query: string) => void, resultCount: number }) => {
+export const SearchBar = ({
+  onSearch,
+  resultCount,
+}: {
+  onSearch: (query: string) => void;
+  resultCount: number;
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const isFirstRender = useRef(true);
 
@@ -20,7 +26,15 @@ export const SearchBar = ({ onSearch, resultCount }: { onSearch: (query: string)
 
   return (
     <div className={styles.searchBar}>
-      <div className={styles.inputContainer} style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center' }}>
+      <div
+        className={styles.inputContainer}
+        style={{
+          position: "relative",
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <input
           type="text"
           className={styles.searchInput}
@@ -34,7 +48,7 @@ export const SearchBar = ({ onSearch, resultCount }: { onSearch: (query: string)
             type="button"
             className={styles.clearButton}
             onClick={() => setSearchTerm("")}
-            aria-label="Clear search" 
+            aria-label="Clear search"
           >
             &times;
           </button>

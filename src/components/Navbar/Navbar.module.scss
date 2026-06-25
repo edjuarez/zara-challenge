@@ -1,19 +1,20 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: $navbar-height;
-    padding: 0 $space-xl;
-    padding-top: 20px;
-    .navbarLogo, .navbarCartIcon {
-        cursor: pointer;
-    }
-    .emptyCartBtn {
-        opacity: 0;
-    }
-    .cartLogo {
-        height: 20px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $navbar-height;
+  padding: 0 $space-xl;
+  padding-top: 20px;
+  .navbarLogo,
+  .navbarCartIcon {
+    cursor: pointer;
+  }
+  .emptyCartBtn {
+    opacity: 0;
+  }
+  .cartLogo {
+    height: 20px;
+  }
   @include mobile {
     padding: 0 $space-sm;
   }

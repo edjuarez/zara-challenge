@@ -22,7 +22,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (effectRan.current) return;
-    
+
     getProducts()
       .then((data) => {
         const cleanProducts = deduplicateProducts(data);
@@ -31,11 +31,11 @@ export default function HomePage() {
       .catch((error) => {
         console.error("ERROR AL LLAMAR LA API:", error);
       });
-      
+
     return () => {
       effectRan.current = true;
-    };  
-  }, []); 
+    };
+  }, []);
 
   const handleSearch = useCallback(async (query: string) => {
     getProducts(query)
@@ -54,17 +54,19 @@ export default function HomePage() {
   return (
     <>
       <div className={styles.stickySearchWrapper}>
-        <SearchBar 
-          onSearch={handleSearch} 
+        <SearchBar
+          onSearch={handleSearch}
           resultCount={products.slice(0, visibleCount).length}
         />
       </div>
       <section className={styles.homePage} aria-label="Catálogo de productos">
         <div className={styles.productsGrid}>
           {products.length > 0 ? (
-            products.slice(0, visibleCount).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
+            products
+              .slice(0, visibleCount)
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
           ) : (
             <p role="status">No se encontraron resultados.</p>
           )}

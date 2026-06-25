@@ -32,7 +32,6 @@
     gap: 8px;
     padding: 0;
 
-
     &:hover {
       color: $secondary-text;
     }
@@ -44,21 +43,21 @@
 }
 
 .mainProductSection {
-    display: grid;
-    justify-content: center;
-    grid-auto-flow: column;
-    gap: 15px;
-    @include mobile {
-      grid-auto-flow: row;
-          padding: 2rem 20px;
+  display: grid;
+  justify-content: center;
+  grid-auto-flow: column;
+  gap: 15px;
+  @include mobile {
+    grid-auto-flow: row;
+    padding: 2rem 20px;
     gap: 2rem;
     flex-direction: column-reverse;
-    }
-    @include tablet {
-          padding: 2rem 20px;
+  }
+  @include tablet {
+    padding: 2rem 20px;
     gap: 2rem;
     flex-direction: column-reverse;
-    }
+  }
 
   .imageColumn {
     flex: 1 1 500px;
@@ -76,9 +75,9 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-    @include tablet {
-  max-height: 400px;
-    }
+      @include tablet {
+        max-height: 400px;
+      }
     }
   }
 
@@ -151,7 +150,8 @@
           border-color: $grey-swatch;
         }
 
-        &:active, &.selected {
+        &:active,
+        &.selected {
           border-color: $primary-text;
           border-radius: 0;
           outline: 0.8px solid #000000;
@@ -161,62 +161,70 @@
       }
     }
 
-  .colorGrid {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: $font-size-xs;
-    margin-bottom: 10px;
+    .colorGrid {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: $font-size-xs;
+      margin-bottom: 10px;
 
-    .colorSwatchWrapper {
-      position: relative;
-      cursor: pointer;
-      background: none;
-      &:hover {
-        outline: none;
-        border: none;
-      }
-      &:active, &.selected {
-        outline: none;
-        border: none;
-        border-color: $grey-swatch;
-        box-shadow: 0 0 0 2px $bg-color, 0 0 0 3px $grey-swatch;
-        border-radius: 0;
-      }
-      &:focus {
-        outline: 1px solid #000000;
-        z-index: 1;
-        box-shadow: none !important;
-      }
-      .colorSwatch {
-        width: 30px;
-        height: 30px;
-        border: 1px solid $line-color;
-        box-sizing: border-box;
-        background-color: $primary-text;
-        transition: box-shadow 0.2s ease, border-color 0.2s ease;
-
+      .colorSwatchWrapper {
+        position: relative;
+        cursor: pointer;
+        background: none;
         &:hover {
+          outline: none;
+          border: none;
+        }
+        &:active,
+        &.selected {
+          outline: none;
+          border: none;
           border-color: $grey-swatch;
-          box-shadow: 0 0 0 2px $bg-color, 0 0 0 3px $grey-swatch;
+          box-shadow:
+            0 0 0 2px $bg-color,
+            0 0 0 3px $grey-swatch;
+          border-radius: 0;
         }
         &:focus {
-          outline: 10px solid #000000;
+          outline: 1px solid #000000;
           z-index: 1;
           box-shadow: none !important;
         }
+        .colorSwatch {
+          width: 30px;
+          height: 30px;
+          border: 1px solid $line-color;
+          box-sizing: border-box;
+          background-color: $primary-text;
+          transition:
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
 
-        &:hover {
-          border-color: $grey-swatch;
-        }
-        &:active, &.selected {
-          border-color: $primary-text;
-          border-radius: 0;
-          outline: 0.8px solid #000000;
-          z-index: 1;
+          &:hover {
+            border-color: $grey-swatch;
+            box-shadow:
+              0 0 0 2px $bg-color,
+              0 0 0 3px $grey-swatch;
+          }
+          &:focus {
+            outline: 10px solid #000000;
+            z-index: 1;
+            box-shadow: none !important;
+          }
+
+          &:hover {
+            border-color: $grey-swatch;
+          }
+          &:active,
+          &.selected {
+            border-color: $primary-text;
+            border-radius: 0;
+            outline: 0.8px solid #000000;
+            z-index: 1;
+          }
         }
       }
     }
-  }
     .colorName {
       font-size: $font-size-sm;
     }

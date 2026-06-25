@@ -22,30 +22,30 @@ Technical assessment consisting of a web application for browsing, searching, an
 
 ### Frontend
 
-| Technology | Version |
-|------------|-----------|
-| React | 18.3.1 |
-| TypeScript | 5.6.2 |
-| React Router DOM | 7.x |
-| SASS | Latest |
+| Technology        | Version  |
+| ----------------- | -------- |
+| React             | 18.3.1   |
+| TypeScript        | 5.6.2    |
+| React Router DOM  | 7.x      |
+| SASS              | Latest   |
 | React Context API | Built-in |
 
 ### Tooling
 
 | Technology | Version |
-|------------|-----------|
-| Node.js | 18.x |
-| Vite | 5.4.x |
-| ESLint | 9.13.0 |
-| Prettier | Latest |
+| ---------- | ------- |
+| Node.js    | 18.x    |
+| Vite       | 5.4.x   |
+| ESLint     | 9.13.0  |
+| Prettier   | Latest  |
 
 ### Testing
 
-| Technology | Version |
-|------------|-----------|
-| Vitest | Latest |
-| React Testing Library | Latest |
-| Jest DOM | Latest |
+| Technology            | Version |
+| --------------------- | ------- |
+| Vitest                | Latest  |
+| React Testing Library | Latest  |
+| Jest DOM              | Latest  |
 
 ---
 

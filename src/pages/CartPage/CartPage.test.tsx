@@ -22,7 +22,7 @@ vi.mock("../../components/CartItemCard/CartItemCard", () => ({
   )),
 }));
 const mockedCartItemCard = vi.mocked(
-  (await import("../../components/CartItemCard/CartItemCard")).CartItemCard
+  (await import("../../components/CartItemCard/CartItemCard")).CartItemCard,
 );
 
 // Mock react-router-dom's useNavigate
@@ -39,8 +39,8 @@ vi.mock("react-router-dom", async (importOriginal) => {
 const createMockCartItem = (
   id: string,
   name: string,
-  price?: number
-): Omit<CartItem, 'price'> & { price: number } => ({
+  price?: number,
+): Omit<CartItem, "price"> & { price: number } => ({
   cartItemId: `cart-${id}`,
   id,
   name,
@@ -58,7 +58,7 @@ const renderCartPage = () => {
   return render(
     <MemoryRouter>
       <CartPage />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
@@ -88,7 +88,9 @@ describe("CartPage Component", () => {
       // Act
       renderCartPage();
       // Assert
-      expect(screen.getByRole("heading", { name: /cart \(0\)/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /cart \(0\)/i }),
+      ).toBeInTheDocument();
     });
 
     it("should display a total price of 0 EUR", () => {
@@ -131,7 +133,9 @@ describe("CartPage Component", () => {
       // Act
       renderCartPage();
       // Assert
-      expect(screen.getByRole("heading", { name: /cart \(2\)/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /cart \(2\)/i }),
+      ).toBeInTheDocument();
     });
 
     it("should render a CartItemCard for each item in the cart", () => {
@@ -143,7 +147,10 @@ describe("CartPage Component", () => {
       expect(renderedItems[0]).toHaveTextContent("iPhone 15");
       expect(renderedItems[1]).toHaveTextContent("Galaxy S24");
       expect(mockedCartItemCard).toHaveBeenCalledTimes(2);
-      expect(mockedCartItemCard).toHaveBeenCalledWith({ product: mockItems[0] }, {});
+      expect(mockedCartItemCard).toHaveBeenCalledWith(
+        { product: mockItems[0] },
+        {},
+      );
     });
 
     it("should calculate and display the correct total price", () => {
@@ -154,32 +161,39 @@ describe("CartPage Component", () => {
     });
 
     it("should treat items with an undefined price as 0 in the total calculation", () => {
-        // Arrange: Override mock to include an item with no price
-        // We construct this manually to bypass the default price in `createMockCartItem`.
-        const itemsWithUndefinedPrice: CartItem[] = [
-            {
-              cartItemId: 'cart-1',
-              id: '1',
-              name: 'Priced Item',
-              brand: 'TestBrand',
-              price: 500,
-              imageUrl: 'test.jpg',
-              selectedColor: 'Blue',
-              hexCode: '#0000FF',
-              selectedStorage: '128 GB',
-              quantity: 1,
-            },
-            // This item has an undefined price, which should be treated as 0.
-            { ...createMockCartItem("2", "Priceless Item"), price: undefined as any },
-        ];
+      // Arrange: Override mock to include an item with no price
+      // We construct this manually to bypass the default price in `createMockCartItem`.
+      const itemsWithUndefinedPrice: CartItem[] = [
+        {
+          cartItemId: "cart-1",
+          id: "1",
+          name: "Priced Item",
+          brand: "TestBrand",
+          price: 500,
+          imageUrl: "test.jpg",
+          selectedColor: "Blue",
+          hexCode: "#0000FF",
+          selectedStorage: "128 GB",
+          quantity: 1,
+        },
+        // This item has an undefined price, which should be treated as 0.
+        {
+          ...createMockCartItem("2", "Priceless Item"),
+          price: undefined as any,
+        },
+      ];
 
-        mockedUseCart.mockReturnValue({ ...mockedUseCart.getMockImplementation()!(), cart: itemsWithUndefinedPrice, cartCount: 2 });
+      mockedUseCart.mockReturnValue({
+        ...mockedUseCart.getMockImplementation()!(),
+        cart: itemsWithUndefinedPrice,
+        cartCount: 2,
+      });
 
-        // Act
-        renderCartPage();
+      // Act
+      renderCartPage();
 
-        // Assert: Total should only include the priced item
-        expect(screen.getByText("500 EUR")).toBeInTheDocument();
+      // Assert: Total should only include the priced item
+      expect(screen.getByText("500 EUR")).toBeInTheDocument();
     });
   });
 
@@ -190,9 +204,17 @@ describe("CartPage Component", () => {
     it('should navigate to "/" when "CONTINUE SHOPPING" is clicked', async () => {
       // Arrange
       const user = userEvent.setup();
-      mockedUseCart.mockReturnValue({ cart: [], cartCount: 0, addToCart: vi.fn(), clearCart: vi.fn(), removeFromCart: vi.fn() });
+      mockedUseCart.mockReturnValue({
+        cart: [],
+        cartCount: 0,
+        addToCart: vi.fn(),
+        clearCart: vi.fn(),
+        removeFromCart: vi.fn(),
+      });
       renderCartPage();
-      const continueButton = screen.getByRole("button", { name: /continue shopping/i });
+      const continueButton = screen.getByRole("button", {
+        name: /continue shopping/i,
+      });
 
       // Act
       await user.click(continueButton);
@@ -204,7 +226,13 @@ describe("CartPage Component", () => {
     it('should trigger an alert with the correct item count when "PAY" is clicked', async () => {
       // Arrange
       const user = userEvent.setup();
-      mockedUseCart.mockReturnValue({ cart: [createMockCartItem("1", "Item")], cartCount: 1, addToCart: vi.fn(), clearCart: vi.fn(), removeFromCart: vi.fn() });
+      mockedUseCart.mockReturnValue({
+        cart: [createMockCartItem("1", "Item")],
+        cartCount: 1,
+        addToCart: vi.fn(),
+        clearCart: vi.fn(),
+        removeFromCart: vi.fn(),
+      });
       renderCartPage();
       const payButton = screen.getByRole("button", { name: /pay/i });
 
@@ -212,7 +240,9 @@ describe("CartPage Component", () => {
       await user.click(payButton);
 
       // Assert
-      expect(alertSpy).toHaveBeenCalledWith("Compra de 1 items realizada con éxito!");
+      expect(alertSpy).toHaveBeenCalledWith(
+        "Compra de 1 items realizada con éxito!",
+      );
     });
   });
 });

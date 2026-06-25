@@ -1,12 +1,12 @@
 .similarItemsSection {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 40px $details-page-margin;
-    @include tablet {
-      font-size: $font-size-base;
-      width: auto;
-      margin: 40px 20px;
-    }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 40px $details-page-margin;
+  @include tablet {
+    font-size: $font-size-base;
+    width: auto;
+    margin: 40px 20px;
+  }
   .title {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
@@ -18,8 +18,8 @@
 }
 
 .carouselContainer {
-  margin-right: calc(-50vw + 50%); 
-  padding-right: calc(50vw - 50% + 20px); 
+  margin-right: calc(-50vw + 50%);
+  padding-right: calc(50vw - 50% + 20px);
 
   overflow-x: auto;
   overflow-y: hidden;
@@ -29,11 +29,11 @@
     &::-webkit-scrollbar {
       height: 7px;
     }
-      &::-webkit-scrollbar-thumb {
-        height: 20px;
-        cursor: pointer;
-      }
+    &::-webkit-scrollbar-thumb {
+      height: 20px;
+      cursor: pointer;
     }
+  }
 
   &::-webkit-scrollbar {
     height: 5px;
@@ -61,6 +61,6 @@
 }
 
 .carouselItem {
-  flex: 0 0 280px; 
+  flex: 0 0 280px;
   width: 280px;
 }

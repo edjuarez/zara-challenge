@@ -32,7 +32,10 @@ describe("API Service Suite", () => {
   describe("getProducts()", () => {
     it("Success: Returns products list successfully", async () => {
       // Arrange
-      const mockProducts = [{ id: "1", name: "Phone A" }, { id: "2", name: "Phone B" }];
+      const mockProducts = [
+        { id: "1", name: "Phone A" },
+        { id: "2", name: "Phone B" },
+      ];
       mockedFetch.mockResolvedValueOnce({
         ok: true,
         json: async () => mockProducts,
@@ -51,21 +54,30 @@ describe("API Service Suite", () => {
 
     it("Search: Appends search query correctly when a basic term is provided", async () => {
       // Arrange
-      mockedFetch.mockResolvedValueOnce({ ok: true, json: async () => [] } as Response);
+      mockedFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => [],
+      } as Response);
       const searchTerm = "samsung";
 
       // Act
       await getProducts(searchTerm);
 
       // Assert
-      expect(mockedFetch).toHaveBeenCalledWith(`${MOCK_BASE_URL}/products?search=samsung`, {
-        headers: defaultHeaders,
-      });
+      expect(mockedFetch).toHaveBeenCalledWith(
+        `${MOCK_BASE_URL}/products?search=samsung`,
+        {
+          headers: defaultHeaders,
+        },
+      );
     });
 
     it("Search: Uses encodeURIComponent for special characters and spaces", async () => {
       // Arrange
-      mockedFetch.mockResolvedValueOnce({ ok: true, json: async () => [] } as Response);
+      mockedFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => [],
+      } as Response);
       const searchTerm = "iphone 15 pro & max";
       const encodedTerm = encodeURIComponent(searchTerm); // "iphone%2015%20pro%20%26%20max"
 
@@ -73,9 +85,12 @@ describe("API Service Suite", () => {
       await getProducts(searchTerm);
 
       // Assert
-      expect(mockedFetch).toHaveBeenCalledWith(`${MOCK_BASE_URL}/products?search=${encodedTerm}`, {
-        headers: defaultHeaders,
-      });
+      expect(mockedFetch).toHaveBeenCalledWith(
+        `${MOCK_BASE_URL}/products?search=${encodedTerm}`,
+        {
+          headers: defaultHeaders,
+        },
+      );
     });
 
     it("Error: Throws descriptive error when response.ok is false", async () => {
@@ -87,7 +102,9 @@ describe("API Service Suite", () => {
       } as Response);
 
       // Act & Assert
-      await expect(getProducts()).rejects.toThrow("Error en la petición: 500 Internal Server Error");
+      await expect(getProducts()).rejects.toThrow(
+        "Error en la petición: 500 Internal Server Error",
+      );
     });
   });
 
@@ -108,9 +125,12 @@ describe("API Service Suite", () => {
 
       // Assert
       expect(result).toEqual(mockProductDetail);
-      expect(mockedFetch).toHaveBeenCalledWith(`${MOCK_BASE_URL}/products/p-123`, {
-        headers: defaultHeaders,
-      });
+      expect(mockedFetch).toHaveBeenCalledWith(
+        `${MOCK_BASE_URL}/products/p-123`,
+        {
+          headers: defaultHeaders,
+        },
+      );
     });
 
     it("Error: Handles HTTP errors properly and throws descriptive error", async () => {
@@ -122,7 +142,9 @@ describe("API Service Suite", () => {
       } as Response);
 
       // Act & Assert
-      await expect(getProductById("unknown-id")).rejects.toThrow("Error en la petición: 404 Not Found");
+      await expect(getProductById("unknown-id")).rejects.toThrow(
+        "Error en la petición: 404 Not Found",
+      );
     });
   });
 
@@ -137,7 +159,7 @@ describe("API Service Suite", () => {
         ok: true,
         json: async () => mockResponse,
       } as Response);
-      
+
       const productId = "p-1";
       const color = "Space Black";
       const storage = "256GB";
@@ -163,7 +185,9 @@ describe("API Service Suite", () => {
       } as Response);
 
       // Act & Assert
-      await expect(addToCartApi("1", "Red", "128GB")).rejects.toThrow("Error en la petición: 400 Bad Request");
+      await expect(addToCartApi("1", "Red", "128GB")).rejects.toThrow(
+        "Error en la petición: 400 Bad Request",
+      );
     });
   });
 
@@ -173,7 +197,10 @@ describe("API Service Suite", () => {
   describe("Edge Cases", () => {
     it("Empty search string: Falls back to the base /products endpoint", async () => {
       // Arrange
-      mockedFetch.mockResolvedValueOnce({ ok: true, json: async () => [] } as Response);
+      mockedFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => [],
+      } as Response);
 
       // Act
       await getProducts(""); // Empty string evaluates to falsy
@@ -186,18 +213,24 @@ describe("API Service Suite", () => {
 
     it("Product id containing special characters: Appends correctly to the URL", async () => {
       // Arrange
-      mockedFetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) } as Response);
+      mockedFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({}),
+      } as Response);
       const trickyId = "prod@123/v2";
 
       // Act
       await getProductById(trickyId);
 
       // Assert
-      // Note: The implementation strictly does `${BASE_URL}/products/${id}` without URI encoding. 
+      // Note: The implementation strictly does `${BASE_URL}/products/${id}` without URI encoding.
       // We test the expected behavior of the current implementation.
-      expect(mockedFetch).toHaveBeenCalledWith(`${MOCK_BASE_URL}/products/prod@123/v2`, {
-        headers: defaultHeaders,
-      });
+      expect(mockedFetch).toHaveBeenCalledWith(
+        `${MOCK_BASE_URL}/products/prod@123/v2`,
+        {
+          headers: defaultHeaders,
+        },
+      );
     });
 
     it("Network failure: Rejects gracefully when fetch throws a network exception", async () => {

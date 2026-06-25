@@ -34,7 +34,9 @@ vi.mock("../../context/CartContext", () => ({
 
 // Mock child components to prevent testing their implementation details
 vi.mock("../../components/ProductSpecifications/ProductSpecifications", () => ({
-  ProductSpecifications: vi.fn(() => <div data-testid="product-specifications" />),
+  ProductSpecifications: vi.fn(() => (
+    <div data-testid="product-specifications" />
+  )),
 }));
 
 vi.mock("../../components/SimilarItems/SimilarItems", () => ({
@@ -108,13 +110,15 @@ const renderComponent = (productId: string) => {
       <Routes>
         <Route path="/product/:id" element={<DetailsPage />} />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
 describe("DetailsPage Component", () => {
   const user = userEvent.setup();
-  const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  const consoleErrorSpy = vi
+    .spyOn(console, "error")
+    .mockImplementation(() => {});
   window.scrollTo = vi.fn();
 
   beforeEach(() => {
@@ -132,7 +136,7 @@ describe("DetailsPage Component", () => {
     it("should display a loading indicator while fetching data", async () => {
       // Arrange: Mock a promise that hasn't resolved yet
       mockedGetProductById.mockReturnValue(new Promise(() => {}));
-      
+
       // Act
       renderComponent("123");
 
@@ -153,10 +157,15 @@ describe("DetailsPage Component", () => {
 
       // Assert: An error should be logged to the console
       await waitFor(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledWith("Error cargando producto:", apiError);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+          "Error cargando producto:",
+          apiError,
+        );
       });
       // Optional: Assert that an error message is shown to the user
-      expect(await screen.findByText("Producto no encontrado.")).toBeInTheDocument();
+      expect(
+        await screen.findByText("Producto no encontrado."),
+      ).toBeInTheDocument();
     });
   });
 
@@ -177,14 +186,24 @@ describe("DetailsPage Component", () => {
 
       // Assert: Check for key product information
       expect(await screen.findByText("SuperPhone Pro")).toBeInTheDocument();
-      expect(screen.getByRole("img", { name: /SuperPhone Pro/i })).toHaveAttribute("src", "titanium-image.jpg");
+      expect(
+        screen.getByRole("img", { name: /SuperPhone Pro/i }),
+      ).toHaveAttribute("src", "titanium-image.jpg");
       expect(screen.getByText(/From 1000 EUR/i)).toBeInTheDocument();
 
       // Assert: Check for options
-      expect(screen.getByRole("button", { name: "256 GB" })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "512 GB" })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /Natural Titanium/i })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /Blue Titanium/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "256 GB" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "512 GB" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /Natural Titanium/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /Blue Titanium/i }),
+      ).toBeInTheDocument();
 
       // Assert: Check for child components
       expect(screen.getByTestId("product-specifications")).toBeInTheDocument();
@@ -197,7 +216,9 @@ describe("DetailsPage Component", () => {
     it("should update the price when a different storage option is selected", async () => {
       // Act
       renderComponent("123");
-      const storageOption512 = await screen.findByRole("button", { name: "512 GB" });
+      const storageOption512 = await screen.findByRole("button", {
+        name: "512 GB",
+      });
 
       // Assert: Initial price is 1000 EUR
       expect(screen.getByText(/From 1000 EUR/i)).toBeInTheDocument();
@@ -216,7 +237,9 @@ describe("DetailsPage Component", () => {
     it("should update the image and color name when a color is selected", async () => {
       // Act
       renderComponent("123");
-      const colorOptionBlue = await screen.findByRole("button", { name: /Blue Titanium/i });
+      const colorOptionBlue = await screen.findByRole("button", {
+        name: /Blue Titanium/i,
+      });
       const productImage = screen.getByRole("img", { name: /SuperPhone Pro/i });
 
       // Assert: Initial image and no color name text
@@ -241,7 +264,9 @@ describe("DetailsPage Component", () => {
       renderComponent("123");
       const addButton = await screen.findByRole("button", { name: /añadir/i });
       const storageOption = screen.getByRole("button", { name: "256 GB" });
-      const colorOption = screen.getByRole("button", { name: /Natural Titanium/i });
+      const colorOption = screen.getByRole("button", {
+        name: /Natural Titanium/i,
+      });
 
       // Assert: Initially disabled
       expect(addButton).toBeDisabled();
@@ -268,8 +293,12 @@ describe("DetailsPage Component", () => {
       mockedGetProductById.mockResolvedValue(mockProduct);
       renderComponent("123");
 
-      const storageOption = await screen.findByRole("button", { name: "256 GB" });
-      const colorOption = await screen.findByRole("button", { name: "Color Natural Titanium" });
+      const storageOption = await screen.findByRole("button", {
+        name: "256 GB",
+      });
+      const colorOption = await screen.findByRole("button", {
+        name: "Color Natural Titanium",
+      });
 
       // Assert: Initial state is not pressed
       expect(storageOption).toHaveAttribute("aria-pressed", "false");
@@ -301,8 +330,12 @@ describe("DetailsPage Component", () => {
       mockedGetProductById.mockResolvedValue(mockProduct);
       renderComponent("123");
 
-      const storageOption = await screen.findByRole("button", { name: "512 GB" }); // 1200 EUR
-      const colorOption = await screen.findByRole("button", { name: /Blue Titanium/i }); // blue-image.jpg
+      const storageOption = await screen.findByRole("button", {
+        name: "512 GB",
+      }); // 1200 EUR
+      const colorOption = await screen.findByRole("button", {
+        name: /Blue Titanium/i,
+      }); // blue-image.jpg
       const addButton = screen.getByRole("button", { name: /añadir/i });
 
       // Act: Select options and click add
@@ -337,7 +370,9 @@ describe("DetailsPage Component", () => {
       // Arrange
       mockedGetProductById.mockResolvedValue(createMockProduct());
       renderComponent("123");
-      const backButton = await screen.findByRole("button", { name: /Volver al catálogo principal/i });
+      const backButton = await screen.findByRole("button", {
+        name: /Volver al catálogo principal/i,
+      });
 
       // Act
       await user.click(backButton);

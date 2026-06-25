@@ -41,18 +41,23 @@ const fetchFromApi = async (endpoint: string, options: RequestInit = {}) => {
     ...options.headers,
   };
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, { ...options, headers });
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    ...options,
+    headers,
+  });
 
   if (!response.ok) {
-    throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Error en la petición: ${response.status} ${response.statusText}`,
+    );
   }
 
   return response.json();
 };
 
 export const getProducts = async (searchTerm?: string): Promise<Product[]> => {
-  const endpoint = searchTerm 
-    ? `/products?search=${encodeURIComponent(searchTerm)}` 
+  const endpoint = searchTerm
+    ? `/products?search=${encodeURIComponent(searchTerm)}`
     : "/products";
   return fetchFromApi(endpoint);
 };
@@ -61,7 +66,11 @@ export const getProductById = async (id: string): Promise<ProductDetail> => {
   return fetchFromApi(`/products/${id}`);
 };
 
-export const addToCartApi = async (productId: string, color: string, storage: string): Promise<{ count: number }> => {
+export const addToCartApi = async (
+  productId: string,
+  color: string,
+  storage: string,
+): Promise<{ count: number }> => {
   return fetchFromApi("/cart", {
     method: "POST",
     body: JSON.stringify({ id: productId, color, storage }),
