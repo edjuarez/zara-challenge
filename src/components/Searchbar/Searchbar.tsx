@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "./SearchBar.module.scss";
+import styles from "./Searchbar.module.scss";
 
 export const SearchBar = ({
   onSearch,
