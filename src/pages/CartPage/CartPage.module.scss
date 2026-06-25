@@ -7,7 +7,7 @@
 
 .cartTitle {
   font-size: $font-size-xl;
-  font-weight: 300;
+  font-weight: $font-weight-light;
   border-top: 1px solid $primary-text;
   padding: $space-sm $space-xl;
   color: rgb(0, 0, 0);
@@ -101,6 +101,7 @@
 
     @include mobile {
       width: 100%;
+      font-size: $font-size-sm;
     }
   }
 
@@ -122,12 +123,12 @@
     font-size: $font-size-base;
 
     .totalLabel {
-      font-weight: 300;
+      font-weight: $font-weight-light;
       color: #111111;
     }
 
     .totalAmount {
-      font-weight: 400;
+      font-weight: $font-weight-regular;
       color: #111111;
     }
 
@@ -160,6 +161,7 @@
 
     @include mobile {
       width: 100%;
+      font-size: $font-size-sm;
     }
   }
 }

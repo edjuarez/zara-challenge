@@ -80,9 +80,6 @@ src/
 │   ├── global.scss
 │   └── variables.scss
 │
-├── types/
-│
-└── utils/
 ```
 
 ---
@@ -114,6 +111,28 @@ The application will be available at:
 
 ```text
 http://localhost:5173
+```
+
+---
+
+## Production Mode
+
+Run the production build:
+
+```bash
+npm run build
+```
+
+Run the production server:
+
+```bash
+npm run preview
+```
+
+The application will be available at:
+
+```text
+http://localhost:4173/
 ```
 
 ---
@@ -175,7 +194,7 @@ React Router is used for navigation between:
 
 - Home Page
 - Product Detail Page
-- Shopping Cart Page
+- Cart Page
 
 ### Styling
 

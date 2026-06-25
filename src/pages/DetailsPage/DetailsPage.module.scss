@@ -92,7 +92,7 @@
     }
 
     .productName {
-      font-weight: 300;
+      font-weight: $font-weight-light;
       font-size: $font-size-lg;
       text-transform: uppercase;
       letter-spacing: 0;
@@ -101,8 +101,8 @@
     }
 
     .basePrice {
-      font-size: 1.2rem;
-      font-weight: 300;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-light;
       color: $primary-text;
       margin: 13px 0;
     }
@@ -116,7 +116,7 @@
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 1rem;
-        font-weight: 400;
+        font-weight: $font-weight-regular;
       }
     }
 
@@ -134,7 +134,7 @@
         background: none;
         border: 1px solid $line-color;
         cursor: pointer;
-        font-size: $font-size-xss;
+        font-size: $font-size-xs;
         letter-spacing: 0.05em;
         color: $primary-text;
         //transition: border-color 0.2s, background-color 0.2s;
@@ -164,7 +164,7 @@
     .colorGrid {
       display: flex;
       flex-wrap: wrap;
-      font-size: $font-size-xs;
+      font-size: $font-size-xxs;
       margin-bottom: 10px;
 
       .colorSwatchWrapper {

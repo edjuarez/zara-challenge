@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event"; // Make sure this package is installed with `npm i -D @testing-library/user-event`
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import CartPage from "./CartPage";
 import { useCart, CartItem } from "../../context/CartContext";
@@ -74,36 +74,31 @@ describe("CartPage Component", () => {
   // ===========================================================================
   describe("when the cart is empty", () => {
     beforeEach(() => {
-      // Arrange: Mock an empty cart state
+      // Arrange: Mock an empty cart state incluyendo la nueva función del contrato
       mockedUseCart.mockReturnValue({
         cart: [],
         cartCount: 0,
         addToCart: vi.fn(),
         clearCart: vi.fn(),
         removeFromCart: vi.fn(),
+        updateQuantity: vi.fn(), // <--- AÑADIDO
       });
     });
 
     it("should display the title with a count of 0", () => {
-      // Act
       renderCartPage();
-      // Assert
       expect(
         screen.getByRole("heading", { name: /cart \(0\)/i }),
       ).toBeInTheDocument();
     });
 
     it("should display a total price of 0 EUR", () => {
-      // Act
       renderCartPage();
-      // Assert
       expect(screen.getByText("0 EUR")).toBeInTheDocument();
     });
 
     it("should not render any CartItemCard components", () => {
-      // Act
       renderCartPage();
-      // Assert
       expect(screen.queryByTestId("cart-item")).not.toBeInTheDocument();
       expect(mockedCartItemCard).not.toHaveBeenCalled();
     });
@@ -119,29 +114,26 @@ describe("CartPage Component", () => {
     ];
 
     beforeEach(() => {
-      // Arrange: Mock a cart with two items
+      // Arrange: Mock de un carrito con items y la función updateQuantity
       mockedUseCart.mockReturnValue({
         cart: mockItems,
         cartCount: 2,
         addToCart: vi.fn(),
         clearCart: vi.fn(),
         removeFromCart: vi.fn(),
+        updateQuantity: vi.fn(), // <--- AÑADIDO
       });
     });
 
     it("should display the correct title and item count", () => {
-      // Act
       renderCartPage();
-      // Assert
       expect(
         screen.getByRole("heading", { name: /cart \(2\)/i }),
       ).toBeInTheDocument();
     });
 
     it("should render a CartItemCard for each item in the cart", () => {
-      // Act
       renderCartPage();
-      // Assert
       const renderedItems = screen.getAllByTestId("cart-item");
       expect(renderedItems).toHaveLength(2);
       expect(renderedItems[0]).toHaveTextContent("iPhone 15");
@@ -154,15 +146,11 @@ describe("CartPage Component", () => {
     });
 
     it("should calculate and display the correct total price", () => {
-      // Act
       renderCartPage();
-      // Assert
       expect(screen.getByText("1800 EUR")).toBeInTheDocument();
     });
 
     it("should treat items with an undefined price as 0 in the total calculation", () => {
-      // Arrange: Override mock to include an item with no price
-      // We construct this manually to bypass the default price in `createMockCartItem`.
       const itemsWithUndefinedPrice: CartItem[] = [
         {
           cartItemId: "cart-1",
@@ -176,10 +164,9 @@ describe("CartPage Component", () => {
           selectedStorage: "128 GB",
           quantity: 1,
         },
-        // This item has an undefined price, which should be treated as 0.
         {
           ...createMockCartItem("2", "Priceless Item"),
-          price: undefined as any,
+          price: undefined as unknown as number, // More type-safe way to handle this for testing
         },
       ];
 
@@ -189,10 +176,7 @@ describe("CartPage Component", () => {
         cartCount: 2,
       });
 
-      // Act
       renderCartPage();
-
-      // Assert: Total should only include the priced item
       expect(screen.getByText("500 EUR")).toBeInTheDocument();
     });
   });
@@ -202,7 +186,6 @@ describe("CartPage Component", () => {
   // ===========================================================================
   describe("User Interactions", () => {
     it('should navigate to "/" when "CONTINUE SHOPPING" is clicked', async () => {
-      // Arrange
       const user = userEvent.setup();
       mockedUseCart.mockReturnValue({
         cart: [],
@@ -210,21 +193,18 @@ describe("CartPage Component", () => {
         addToCart: vi.fn(),
         clearCart: vi.fn(),
         removeFromCart: vi.fn(),
+        updateQuantity: vi.fn(), // <--- AÑADIDO
       });
       renderCartPage();
       const continueButton = screen.getByRole("button", {
         name: /continue shopping/i,
       });
 
-      // Act
       await user.click(continueButton);
-
-      // Assert
       expect(mockNavigate).toHaveBeenCalledWith("/");
     });
 
     it('should trigger an alert with the correct item count when "PAY" is clicked', async () => {
-      // Arrange
       const user = userEvent.setup();
       mockedUseCart.mockReturnValue({
         cart: [createMockCartItem("1", "Item")],
@@ -232,14 +212,12 @@ describe("CartPage Component", () => {
         addToCart: vi.fn(),
         clearCart: vi.fn(),
         removeFromCart: vi.fn(),
+        updateQuantity: vi.fn(), // <--- AÑADIDO
       });
       renderCartPage();
       const payButton = screen.getByRole("button", { name: /pay/i });
 
-      // Act
       await user.click(payButton);
-
-      // Assert
       expect(alertSpy).toHaveBeenCalledWith(
         "Compra de 1 items realizada con éxito!",
       );

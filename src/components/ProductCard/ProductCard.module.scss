@@ -81,7 +81,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 0.75rem;
+    font-size: $font-size-xs;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-top: 20px;
@@ -93,21 +93,21 @@
 
       .brand {
         font-size: 0.55rem;
-        font-weight: 300;
+        font-weight: $font-weight-light;
         color: #767676;
         transition: color 0.4s ease;
       }
 
       .model {
         font-size: 13px;
-        font-weight: 400;
+        font-weight: $font-weight-regular;
         color: #000000;
         transition: color 0.4s ease;
       }
     }
 
     .price {
-      font-weight: 400;
+      font-weight: $font-weight-regular;
       color: #000000;
       transition: color 0.4s ease;
     }

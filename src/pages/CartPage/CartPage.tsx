@@ -6,7 +6,7 @@ import styles from "./CartPage.module.scss";
 export default function CartPage() {
   const { cart, cartCount } = useCart();
   const totalPrice = cart.reduce(
-    (total, product) => total + (product.price || 0),
+    (total, product) => total + (product.price || 0) * (product.quantity || 1),
     0,
   );
   const navigate = useNavigate();
@@ -29,7 +29,10 @@ export default function CartPage() {
           <button className={styles.continueBtn} onClick={() => navigate("/")}>
             CONTINUE SHOPPING
           </button>
-          <div className={styles.rightGroup} style={cartCount > 0 ? {} : { display: "none" }}>
+          <div
+            className={styles.rightGroup}
+            style={cartCount > 0 ? {} : { display: "none" }}
+          >
             <div className={styles.totalInfo}>
               <span className={styles.totalLabel}>TOTAL</span>
               <span className={styles.totalAmount}>{totalPrice} EUR</span>
