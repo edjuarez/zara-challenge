@@ -23,12 +23,12 @@ export const CartItemCard = ({ product }: CartItemCardProps) => {
       return;
     }
   };
-
+  const secureImageUrl = product.imageUrl.replace(/^http:\/\//i, 'https://');
   return (
     <div className={styles.cartItemCard}>
       <div className={styles.imageWrapper}>
         <img
-          src={product.imageUrl}
+          src={secureImageUrl}
           alt={`Imagen de ${product.name}, ${product.selectedColor}`}
         />
       </div>

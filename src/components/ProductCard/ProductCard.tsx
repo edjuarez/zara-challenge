@@ -6,7 +6,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const productLabel = `${product.brand} ${product.name}. ${
     product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"
   }`;
-
+  const secureImageUrl = product.imageUrl.replace(/^http:\/\//i, 'https://');
   return (
     <article className={styles.productCard}>
       <Link
@@ -15,7 +15,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         aria-label={productLabel}
       >
         <div className={styles.imageWrapper}>
-          <img src={product.imageUrl} alt="" aria-hidden="true" />
+          <img src={secureImageUrl} alt="" aria-hidden="true" />
         </div>
         <div className={styles.productInfo}>
           <div className={styles.details}>
