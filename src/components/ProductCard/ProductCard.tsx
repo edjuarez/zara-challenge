@@ -6,7 +6,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const productLabel = `${product.brand} ${product.name}. ${
     product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"
   }`;
-  const secureImageUrl = product.imageUrl.replace(/^http:\/\//i, 'https://');
+  const secureImageUrl = product.imageUrl.replace(/^http:\/\//i, "https://");
   return (
     <article className={styles.productCard}>
       <Link

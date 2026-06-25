@@ -6,6 +6,7 @@ import { SearchBar } from "../../components/Searchbar/Searchbar";
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const effectRan = useRef(false);
   const [visibleCount, setVisibleCount] = useState(20);
 
@@ -22,7 +23,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (effectRan.current) return;
-
+    setIsLoading(true);
     getProducts()
       .then((data) => {
         const cleanProducts = deduplicateProducts(data);
@@ -30,20 +31,26 @@ export default function HomePage() {
       })
       .catch((error) => {
         console.error("ERROR AL LLAMAR LA API:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-
     return () => {
       effectRan.current = true;
     };
   }, []);
 
   const handleSearch = useCallback(async (query: string) => {
+    setIsLoading(true);
     getProducts(query)
       .then((data) => {
         setProducts(deduplicateProducts(data));
       })
       .catch((error) => {
         console.error("ERROR AL LLAMAR LA API:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -60,24 +67,37 @@ export default function HomePage() {
         />
       </div>
       <section className={styles.homePage} aria-label="Catálogo de productos">
-        <div className={styles.productsGrid}>
-          {products.length > 0 ? (
-            products
-              .slice(0, visibleCount)
-              .map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
-          ) : (
-            <p role="status">No se encontraron resultados.</p>
-          )}
-        </div>
-
-        {visibleCount < products.length && (
-          <div className={styles.loadMoreContainer}>
-            <button className={styles.loadMoreButton} onClick={handleShowMore}>
-              VER MÁS
-            </button>
+        {isLoading ? (
+          <div className={styles.loadingContainer}>
+            <p aria-live="polite" className={styles.loadingText}>
+              Cargando productos...
+            </p>
           </div>
+        ) : (
+          <>
+            <div className={styles.productsGrid}>
+              {products.length > 0 ? (
+                products
+                  .slice(0, visibleCount)
+                  .map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))
+              ) : (
+                <p role="status">No se encontraron resultados.</p>
+              )}
+            </div>
+
+            {visibleCount < products.length && (
+              <div className={styles.loadMoreContainer}>
+                <button
+                  className={styles.loadMoreButton}
+                  onClick={handleShowMore}
+                >
+                  VER MÁS
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
     </>

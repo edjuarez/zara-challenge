@@ -17,16 +17,19 @@ Technical assessment consisting of a web application for browsing, searching, an
 - Development and production builds.
 
 ---
+
 ## Unit Tests Coverage
 
 Unit tests are implemented for the following areas:
 
 ### Pages
+
 - HomePage
 - DetailPage
 - CartPage
 
 ### API
+
 - `services/api.ts` (API integration and data fetching logic)
 
 ### What is tested
@@ -44,6 +47,7 @@ Unit tests are implemented for the following areas:
 In addition to the required functionality, the following improvements were implemented:
 
 ### Home improvements
+
 - Prevention of issues related to duplicated product IDs in cart operations.
 - Added a **"Ver más"** button to load additional products progressively.
 - Maintains the requirement of initially displaying only the first 20 products from the API.
@@ -175,12 +179,12 @@ http://localhost:4173/
 
 ## Available Scripts
 
-- `npm run dev` → Start development server  
-- `npm run build` → Build production application  
-- `npm run preview` → Preview production build locally  
-- `npm run lint` → Run ESLint checks  
-- `npm run format` → Format code using Prettier  
-- `npm run test` → Run unit tests 
+- `npm run dev` → Start development server
+- `npm run build` → Build production application
+- `npm run preview` → Preview production build locally
+- `npm run lint` → Run ESLint checks
+- `npm run format` → Format code using Prettier
+- `npm run test` → Run unit tests
 
 ---
 

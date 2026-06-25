@@ -74,7 +74,7 @@ export default function DetailPage() {
     selectedColorIndex !== null
       ? product.colorOptions[selectedColorIndex].imageUrl
       : product.colorOptions?.[0]?.imageUrl;
-  const secureImageUrl = currentImageUrl.replace(/^http:\/\//i, 'https://');
+  const secureImageUrl = currentImageUrl.replace(/^http:\/\//i, "https://");
   const currentPrice =
     selectedStorageIndex !== null
       ? product.storageOptions[selectedStorageIndex].price
@@ -111,7 +111,7 @@ export default function DetailPage() {
     });
     navigate("/cart");
   };
-  
+
   return (
     <>
       <header className={styles.pageHeader}>

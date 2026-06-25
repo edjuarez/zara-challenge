@@ -9,6 +9,31 @@
   @include tablet {
     padding-bottom: 2rem;
   }
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+
+  .loadingText {
+    font-size: 1.2rem;
+    color: #000000;
+    font-weight: 500;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
 }
 
 .stickySearchWrapper {
