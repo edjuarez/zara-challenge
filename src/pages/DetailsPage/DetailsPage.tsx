@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, ProductDetail } from "../../services/api";
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../context/CartContext";
 import { ProductSpecifications } from "../../components/ProductSpecifications/ProductSpecifications";
 import { SimilarItems } from "../../components/SimilarItems/SimilarItems";
 import styles from "./DetailsPage.module.scss";
 
 export interface ColorOption { 
-  colorCode: string;
   hexCode: string;
   name: string;
   imageUrl: string;
 }
 
 export interface StorageOption {
-  storageCode: string;
   capacity: string;
   price: number; 
 }
@@ -39,17 +37,20 @@ export default function DetailPage() {
             .then((data) => {
                 setProduct(data);
             })
-            .catch((error) => console.error("Error cargando producto:", error))
+            .catch((error) => {
+                console.error("Error cargando producto:", error);
+                setProduct(null);
+            })
             .finally(() => setIsLoading(false));
         }
     }, [id]);
 
-    if (isLoading) return <div style={{ padding: "4rem", textAlign: "center", fontSize: "0.8rem", textTransform: "uppercase" }}>Cargando especificaciones...</div>;
+    if (isLoading) return <div role="progressbar" style={{ padding: "4rem", textAlign: "center", fontSize: "0.8rem", textTransform: "uppercase" }}>Cargando especificaciones...</div>;
     if (!product) return <div style={{ padding: "4rem", textAlign: "center" }}>Producto no encontrado.</div>;
 
     const currentImageUrl = selectedColorIndex !== null
         ? product.colorOptions[selectedColorIndex].imageUrl
-        : product.colorOptions[0].imageUrl;
+        : product.colorOptions?.[0]?.imageUrl;
 
     const currentPrice = selectedStorageIndex !== null
         ? product.storageOptions[selectedStorageIndex].price

@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../context/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 

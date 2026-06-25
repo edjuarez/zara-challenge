@@ -1,7 +1,7 @@
 .cartPage {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
 }
 
@@ -131,7 +131,7 @@
       color: #111111;
     }
 
-    @include tablet {
+    @include mobile {
       width: 100%;
       justify-content: space-between;
     }

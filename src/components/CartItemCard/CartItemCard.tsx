@@ -1,7 +1,11 @@
-import { useCart } from "../../hooks/useCart";
+import { useCart, CartItem } from "../../context/CartContext";
 import styles from "./CartItemCard.module.scss";
 
-export const CartItemCard = ({ product }: { product: any }) => {
+interface CartItemCardProps {
+  product: CartItem;
+}
+
+export const CartItemCard = ({ product }: CartItemCardProps) => {
     const { removeFromCart } = useCart();
     return(
         <div className={styles.cartItemCard}>
