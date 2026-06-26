@@ -93,7 +93,7 @@ export default function HomePage() {
                   className={styles.loadMoreButton}
                   onClick={handleShowMore}
                 >
-                  VER MÁS
+                  SEE MORE
                 </button>
               </div>
             )}

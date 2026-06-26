@@ -171,24 +171,17 @@
         position: relative;
         cursor: pointer;
         background: none;
-        &:hover {
-          outline: none;
-          border: none;
-        }
         &:active,
+        &:hover,
         &.selected {
           outline: none;
-          border: none;
-          border-color: $grey-swatch;
-          box-shadow:
-            0 0 0 2px $bg-color,
-            0 0 0 3px $grey-swatch;
           border-radius: 0;
+          border-color: $primary-text;
         }
         &:focus {
-          outline: 1px solid #000000;
           z-index: 1;
-          box-shadow: none !important;
+          border-radius: 0;
+          border-color: $primary-text;
         }
         .colorSwatch {
           width: 30px;
@@ -199,29 +192,6 @@
           transition:
             box-shadow 0.2s ease,
             border-color 0.2s ease;
-
-          &:hover {
-            border-color: $grey-swatch;
-            box-shadow:
-              0 0 0 2px $bg-color,
-              0 0 0 3px $grey-swatch;
-          }
-          &:focus {
-            outline: 10px solid #000000;
-            z-index: 1;
-            box-shadow: none !important;
-          }
-
-          &:hover {
-            border-color: $grey-swatch;
-          }
-          &:active,
-          &.selected {
-            border-color: $primary-text;
-            border-radius: 0;
-            outline: 0.8px solid #000000;
-            z-index: 1;
-          }
         }
       }
     }

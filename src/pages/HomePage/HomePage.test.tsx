@@ -173,8 +173,8 @@ describe("HomePage Component", () => {
       });
 
       // Act: Click "Load More"
-      const loadMoreButton = screen.getByRole("button", { name: /ver más/i });
-      fireEvent.click(loadMoreButton);
+      const seeMoreButton = screen.getByRole("button", { name: /see more/i });
+      fireEvent.click(seeMoreButton);
 
       // Assert: The count should update to 25.
       await waitFor(() => {
@@ -187,7 +187,7 @@ describe("HomePage Component", () => {
   // 4. "Load More" Pagination
   // ===========================================================================
   describe("Load More Functionality", () => {
-    it('should show "VER MÁS" button if there are more than 20 products', async () => {
+    it('should show "SEE MORE" button if there are more than 20 products', async () => {
       // Arrange: Mock 21 products.
       const mockProducts = Array.from({ length: 21 }, (_, i) =>
         createMockProduct(`${i}`, `Product ${i}`),
@@ -198,11 +198,11 @@ describe("HomePage Component", () => {
 
       // Assert: The button should be visible.
       expect(
-        await screen.findByRole("button", { name: /ver más/i }),
+        await screen.findByRole("button", { name: /see more/i }),
       ).toBeInTheDocument();
     });
 
-    it('should NOT show "VER MÁS" button if there are 20 or fewer products', async () => {
+    it('should NOT show "SEE MORE" button if there are 20 or fewer products', async () => {
       // Arrange: Mock 20 products.
       const mockProducts = Array.from({ length: 20 }, (_, i) =>
         createMockProduct(`${i}`, `Product ${i}`),
@@ -214,11 +214,11 @@ describe("HomePage Component", () => {
       // Assert: Wait for products to render, then check that the button is absent.
       await screen.findByText("Product 19");
       expect(
-        screen.queryByRole("button", { name: /ver más/i }),
+        screen.queryByRole("button", { name: /see more/i }),
       ).not.toBeInTheDocument();
     });
 
-    it("should display more products when 'VER MÁS' is clicked", async () => {
+    it("should display more products when 'SEE MORE' is clicked", async () => {
       // Arrange: Mock 21 products.
       const mockProducts = Array.from({ length: 21 }, (_, i) =>
         createMockProduct(`${i}`, `Product ${i}`),
@@ -232,16 +232,16 @@ describe("HomePage Component", () => {
       expect(screen.queryByText("Product 20")).not.toBeInTheDocument();
 
       // Click the "Load More" button.
-      const loadMoreButton = await screen.findByRole("button", {
-        name: /ver más/i,
+      const seeMoreButton = await screen.findByRole("button", {
+        name: /see more/i,
       });
-      fireEvent.click(loadMoreButton);
+      fireEvent.click(seeMoreButton);
 
       // Assert: The 21st product is now visible.
       expect(await screen.findByText("Product 20")).toBeInTheDocument();
     });
 
-    it("should hide the 'VER MÁS' button when all products are visible", async () => {
+    it("should hide the 'see more' button when all products are visible", async () => {
       // Arrange: Mock 21 products.
       const mockProducts = Array.from({ length: 21 }, (_, i) =>
         createMockProduct(`${i}`, `Product ${i}`),
@@ -251,15 +251,15 @@ describe("HomePage Component", () => {
       render(<HomePage />);
 
       // Click the button.
-      const loadMoreButton = await screen.findByRole("button", {
-        name: /ver más/i,
+      const seeMoreButton = await screen.findByRole("button", {
+        name: /see more/i,
       });
-      fireEvent.click(loadMoreButton);
+      fireEvent.click(seeMoreButton);
 
       // Assert: Wait for the new product to appear, then check that the button is gone.
       await screen.findByText("Product 20");
       expect(
-        screen.queryByRole("button", { name: /ver más/i }),
+        screen.queryByRole("button", { name: /see more/i }),
       ).not.toBeInTheDocument();
     });
   });

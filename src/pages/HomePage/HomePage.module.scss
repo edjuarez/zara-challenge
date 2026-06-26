@@ -116,8 +116,6 @@
 
   @include mobile {
     width: 100%;
-    max-width: 280px;
-    height: 48px;
-    font-size: $font-size-xxs;
+    margin: 0 24px;
   }
 }
