@@ -40,6 +40,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("shopping-cart", JSON.stringify(cart));
   }, [cart]);
 
+  const safePrice = (price: any): number => {
+    const parsed = parseFloat(price);
+    return isNaN(parsed) ? 0 : parsed;
+  };
+
   const addToCart = (newItem: Omit<CartItem, "cartItemId" | "quantity">) => {
     const cartItemId = `${newItem.id}-${newItem.hexCode}-${newItem.selectedStorage.replace(/\s/g, "")}`;
 
@@ -51,11 +56,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existingItemIndex > -1) {
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += 1;
-        console.log("agrego nuevo o actualizo");
         return updatedCart;
       }
 
-      return [...prevCart, { ...newItem, cartItemId, quantity: 1 }];
+      const cleanItem = {
+        ...newItem,
+        price: safePrice(newItem.price),
+        cartItemId,
+        quantity: 1
+      };
+
+      return [...prevCart, cleanItem];
     });
   };
 
