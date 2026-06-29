@@ -218,9 +218,7 @@ describe("CartPage Component", () => {
       const payButton = screen.getByRole("button", { name: /pay/i });
 
       await user.click(payButton);
-      expect(alertSpy).toHaveBeenCalledWith(
-        "Compra de 1 items realizada con éxito!",
-      );
+      expect(alertSpy).toHaveBeenCalledWith("Purchase of 1 item completed");
     });
   });
 });

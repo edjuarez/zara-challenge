@@ -40,9 +40,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("shopping-cart", JSON.stringify(cart));
   }, [cart]);
 
-  const safePrice = (price: any): number => {
-    const parsed = parseFloat(price);
-    return isNaN(parsed) ? 0 : parsed;
+  const safePrice = (price: unknown): number => {
+    if (typeof price === "number") {
+      return Number.isNaN(price) ? 0 : price;
+    }
+
+    if (typeof price === "string") {
+      const parsed = parseFloat(price);
+      return Number.isNaN(parsed) ? 0 : parsed;
+    }
+
+    return 0;
   };
 
   const addToCart = (newItem: Omit<CartItem, "cartItemId" | "quantity">) => {
@@ -63,7 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         ...newItem,
         price: safePrice(newItem.price),
         cartItemId,
-        quantity: 1
+        quantity: 1,
       };
 
       return [...prevCart, cleanItem];

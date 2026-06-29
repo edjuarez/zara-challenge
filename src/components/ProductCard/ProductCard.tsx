@@ -6,7 +6,13 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const productLabel = `${product.brand} ${product.name}. ${
     product.basePrice ? `${product.basePrice} EUR` : "Consultar precio"
   }`;
+
   const secureImageUrl = product.imageUrl.replace(/^http:\/\//i, "https://");
+  const cleanUrl = secureImageUrl.replace(/^https?:\/\//i, "");
+  const optimizedImageUrl = secureImageUrl
+    ? `https://images.weserv.nl/?url=${cleanUrl}&w=350&output=webp&q=80`
+    : "";
+
   return (
     <article className={styles.productCard}>
       <Link
@@ -15,7 +21,18 @@ export const ProductCard = ({ product }: { product: Product }) => {
         aria-label={productLabel}
       >
         <div className={styles.imageWrapper}>
-          <img src={secureImageUrl} alt="" aria-hidden="true" />
+          <img
+            src={optimizedImageUrl}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src !== secureImageUrl) {
+                target.src = secureImageUrl;
+              }
+            }}
+          />
         </div>
         <div className={styles.productInfo}>
           <div className={styles.details}>

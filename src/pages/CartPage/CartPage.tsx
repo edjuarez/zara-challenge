@@ -40,7 +40,9 @@ export default function CartPage() {
             <button
               className={styles.payBtn}
               onClick={() =>
-                alert(`Compra de ${cartCount} items realizada con éxito!`)
+                alert(
+                  `Purchase of ${cartCount} ${cartCount === 1 ? "item" : "items"} completed`,
+                )
               }
             >
               PAY
