@@ -8,7 +8,6 @@ interface SimilarItemsProps {
   currentProductId: string;
 }
 
-// Extendemos el tipo localmente para asegurar que TypeScript reconozca nuestra llave única
 type ProductWithUniqueKey = Product & { uniqueKey: string };
 
 export const SimilarItems = ({ currentProductId }: SimilarItemsProps) => {
@@ -18,28 +17,23 @@ export const SimilarItems = ({ currentProductId }: SimilarItemsProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Instanciamos el controlador para poder abortar la petición si el ID cambia
     const abortController = new AbortController();
 
     setIsLoading(true);
 
     getProducts()
       .then((allProducts) => {
-        // Si la petición fue abortada en el camino, no hacemos nada
         if (abortController.signal.aborted) return;
 
-        // 2. Filtramos el producto actual
         const filtered = allProducts.filter((p) => p.id !== currentProductId);
 
-        // 3. Sanitizamos los datos inyectando un índice único para matar la duplicación en el DOM
         const sanitizedProducts: ProductWithUniqueKey[] = filtered.map(
           (product, index) => ({
             ...product,
-            uniqueKey: `${product.id}-${index}`, // Llave 100% única y estable
+            uniqueKey: `${product.id}-${index}`,
           }),
         );
 
-        // Limitamos a los primeros 8
         setSimilarProducts(sanitizedProducts.slice(0, 8));
       })
       .catch((err) => {
@@ -53,7 +47,6 @@ export const SimilarItems = ({ currentProductId }: SimilarItemsProps) => {
         }
       });
 
-    // 4. FUNCIÓN DE LIMPIEZA (Cleanup): Se ejecuta cuando el currentProductId cambia
     return () => {
       abortController.abort();
     };
@@ -69,7 +62,6 @@ export const SimilarItems = ({ currentProductId }: SimilarItemsProps) => {
           {similarProducts.map((product) => (
             <div key={product.uniqueKey} className={styles.carouselItem}>
               {" "}
-              {/* Usamos uniqueKey */}
               <ProductCard product={product} />
             </div>
           ))}
