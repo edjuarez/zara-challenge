@@ -32,6 +32,10 @@ Unit tests are implemented for the following areas:
 
 - `services/api.ts` (API integration and data fetching logic)
 
+### Context
+
+- `context/cartContext.tsx`
+
 ### What is tested
 
 - Component rendering
@@ -39,6 +43,8 @@ Unit tests are implemented for the following areas:
 - Cart state updates
 - Navigation flows
 - API success and error handling
+
+<img width="1043" height="273" alt="Captura de pantalla 2026-07-01 102123" src="https://github.com/user-attachments/assets/7d5d953c-9841-46d0-bff7-536a8cbb5b34" />
 
 ---
 
@@ -219,5 +225,5 @@ The application consumes the provided API using the required `x-api-key` authent
 
 ## Author
 
-Eduardo Juarez
+Eduardo Juarez -
 Frontend Engineer
