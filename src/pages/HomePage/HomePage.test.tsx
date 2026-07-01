@@ -13,9 +13,7 @@ vi.mock("../../services/api", () => ({
 }));
 const mockedGetProducts = vi.mocked(getProducts);
 
-// Mock child components to isolate HomePage logic
 vi.mock("../../components/Searchbar/Searchbar", () => ({
-  // The mock captures the onSearch prop to allow us to trigger it in tests
   SearchBar: vi.fn(({ onSearch, resultCount }) => (
     <div>
       <input
@@ -43,13 +41,11 @@ const createMockProduct = (id: string, name: string): Product => ({
 });
 
 describe("HomePage Component", () => {
-  // Spy on console.error to verify it's called on API failure
   const consoleErrorSpy = vi
     .spyOn(console, "error")
     .mockImplementation(() => {});
 
   beforeEach(() => {
-    // Reset mocks before each test to ensure isolation
     vi.clearAllMocks();
   });
 
@@ -68,11 +64,9 @@ describe("HomePage Component", () => {
       // Act: Render the component.
       render(<HomePage />);
 
-      // Assert: Verify that getProducts was called and products are visible.
       expect(mockedGetProducts).toHaveBeenCalledTimes(1);
       expect(mockedGetProducts).toHaveBeenCalledWith(); // Called with no arguments
 
-      // Use findByText to wait for async rendering
       expect(await screen.findByText("iPhone 15")).toBeInTheDocument();
       expect(await screen.findByText("Samsung Galaxy S24")).toBeInTheDocument();
     });
@@ -91,7 +85,6 @@ describe("HomePage Component", () => {
 
       // Assert: Ensure only unique products are rendered.
       expect(await screen.findByText("Unique Phone")).toBeInTheDocument();
-      // `findAllByText` will throw if it doesn't find exactly one match.
       expect(await screen.findAllByText("Duplicate Phone")).toHaveLength(1);
     });
 
@@ -111,14 +104,12 @@ describe("HomePage Component", () => {
     });
 
     it("should log an error if the initial API call fails", async () => {
-      // Arrange: Mock a rejected API call.
       const apiError = new Error("API is down");
       mockedGetProducts.mockRejectedValue(apiError);
 
       // Act
       render(<HomePage />);
 
-      // Assert: Wait for the error to be logged.
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           "ERROR AL LLAMAR LA API:",

@@ -79,7 +79,7 @@ export const CartItemCard = ({ product }: CartItemCardProps) => {
           onClick={() => removeFromCart(product.cartItemId)}
           aria-label={`Eliminar ${product.name} del carrito`}
         >
-          Eliminar
+          Remove
         </button>
       </div>
     </div>

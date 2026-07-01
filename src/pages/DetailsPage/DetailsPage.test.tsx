@@ -350,7 +350,6 @@ describe("DetailsPage Component", () => {
           id: mockProduct.id,
           name: mockProduct.name,
           brand: mockProduct.brand,
-          // Key assertions for user selections
           price: 1200,
           imageUrl: "blue-image.jpg",
           selectedColor: "Blue Titanium",
