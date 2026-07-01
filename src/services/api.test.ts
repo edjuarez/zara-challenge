@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { getProducts, getProductById, addToCartApi } from "./api"; // Adjust import path as needed
+import { getProducts, getProductById, addToCartApi } from "./api";
 
-// 1. Setup global environment mocks
 const MOCK_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const MOCK_API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,7 +17,6 @@ describe("API Service Suite", () => {
   };
 
   beforeEach(() => {
-    // Reset call history and mocked responses before each test
     vi.clearAllMocks();
   });
 
@@ -224,7 +222,6 @@ describe("API Service Suite", () => {
 
       // Assert
       // Note: The implementation strictly does `${BASE_URL}/products/${id}` without URI encoding.
-      // We test the expected behavior of the current implementation.
       expect(mockedFetch).toHaveBeenCalledWith(
         `${MOCK_BASE_URL}/products/prod@123/v2`,
         {
@@ -241,16 +238,5 @@ describe("API Service Suite", () => {
       // Act & Assert
       await expect(getProducts()).rejects.toThrow("Failed to fetch");
     });
-
-    // it("Malformed JSON: Rejects when API returns invalid JSON structure", async () => {
-    //   // Arrange
-    //   mockedFetch.mockResolvedValueOnce({
-    //     ok: true,
-    //     json: async () => { throw new SyntaxError("Unexpected token < in JSON"); }
-    //   } as Response);
-
-    //   // Act & Assert
-    //   await expect(getProducts()).rejects.toThrow("Unexpected token < in JSON");
-    // });
   });
 });
