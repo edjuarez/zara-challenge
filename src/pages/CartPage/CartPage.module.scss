@@ -1,7 +1,7 @@
 .cartPage {
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 90vh;
   width: 100%;
 }
 
@@ -11,6 +11,7 @@
   border-top: 1px solid $primary-text;
   padding: $space-sm $space-xl;
   color: rgb(0, 0, 0);
+  margin-bottom: 0;
 
   @include mobile {
     font-size: $font-size-lg;
@@ -27,7 +28,7 @@
   margin: 0 auto;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  margin: 20px 110px;
+  margin: 20px $space-xl;
 
   @include tablet {
     grid-template-columns: repeat(2, 1fr);
@@ -49,7 +50,7 @@
 }
 
 .cartFooter {
-  margin: 40px 110px;
+  margin: 40px $space-xl;
   padding: 0;
   padding: 0;
   box-sizing: border-box;

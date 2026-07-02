@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  padding: 40px 0;
+  padding: 30px 0;
   width: 100%;
   max-width: 800px;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +43,7 @@
 
     .removeBtn {
       align-self: flex-start;
-      font-size: $font-size-base;
+      font-size: $font-size-sm;
       background: none;
       border: none;
       padding: 0;
